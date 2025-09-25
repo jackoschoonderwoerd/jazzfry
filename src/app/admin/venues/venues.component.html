@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="venues">
+        @for(venue of venueStore.venues(); track $index) {
+        <app-venue [venue]="venue"></app-venue>
+        }
+    </div>
+
+    <button class="form-button"
+        mat-button
+        (click)="onAddVenue()">add venue</button>
+</div>

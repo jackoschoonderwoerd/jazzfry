@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "./styles/variables";
+@use "./styles/mixins";
+@use "./styles/jazzfry";
+
+html,
+body {
+    height: 100%;
+    background-color: black;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+.link-active {
+    color: red;
+}
+.wrapper {
+    padding: 1rem;
+}
+.container {
+    border: 1px solid gray;
+    padding: 0.3rem;
+}
+.header {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+.mat-expansion-indicator::after {
+    color: var(--sahara) !important;
+}
+.mat-expansion-indicator::after {
+    color: red;
+}

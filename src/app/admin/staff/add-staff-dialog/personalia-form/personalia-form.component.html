@@ -1,0 +1,27 @@
+<form class="form"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form">
+    <div class="header">personalia</div>
+    <mat-form-field>
+        <mat-label>first name</mat-label>
+        <input type="text"
+            matInput
+            formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>particles</mat-label>
+        <input type="text"
+            matInput
+            formControlName="particles">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>last name</mat-label>
+        <input type="text"
+            matInput
+            formControlName="lastName">
+    </mat-form-field>
+    <button mat-button
+        class="form-button"
+        [disabled]="form.invalid"
+        type="submit">confirm personalia</button>
+</form>

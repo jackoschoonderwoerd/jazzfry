@@ -1,0 +1,12 @@
+<div class="container">
+    <mat-form-field>
+        <mat-label>choose a date</mat-label>
+        <input matInput
+            [matDatepicker]="picker"
+            [value]="bookStore.date()"
+            (dateChange)="bookStore.setDate($event)">
+        <mat-datepicker-toggle matIconSuffix
+            [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>

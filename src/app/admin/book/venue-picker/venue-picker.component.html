@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="header">venue</div>
+    <mat-form-field appearance="fill">
+        <mat-label>select venue</mat-label>
+        <mat-select [ngModel]="bookStore.venue()"
+            (selectionChange)="bookStore.setVenue($event.value)">
+            @for(venue of venueStore.venues();track venue){
+            <mat-option [value]="venue.id">{{venue.name}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+</div>

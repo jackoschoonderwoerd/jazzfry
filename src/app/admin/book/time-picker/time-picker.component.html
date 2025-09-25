@@ -1,0 +1,34 @@
+<div class="container">
+
+    <div class="start">
+
+        <div class="header">starts at</div>
+        <mat-form-field appearance="fill">
+            <mat-label>Select start</mat-label>
+            <input matInput
+                [format]="24"
+                [ngxMatTimepicker]="startPicker"
+                [(ngModel)]="start"
+                (ngModelChange)="bookStore.setStart($event)" />
+            <ngx-mat-timepicker [format]="24"
+                #startPicker></ngx-mat-timepicker>
+        </mat-form-field>
+
+    </div>
+
+
+
+    <div class="end">
+        <div class="header">ends at</div>
+        <mat-form-field appearance="fill">
+            <mat-label>Select end</mat-label>
+            <input matInput
+                [format]="24"
+                [ngxMatTimepicker]="endPicker"
+                [(ngModel)]="end"
+                (ngModelChange)="bookStore.setEnd($event)" />
+            <ngx-mat-timepicker #endPicker
+                [format]="24"></ngx-mat-timepicker>
+        </mat-form-field>
+    </div>
+</div>

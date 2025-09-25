@@ -1,0 +1,13 @@
+mat-toolbar {
+    border-bottom: 1px solid gray;
+    background-color: var(--rust);
+    display: flex;
+    justify-content: space-between;
+    .link-active {
+        background-color: var(--blue);
+    }
+    button {
+        color: var(--sahara);
+        text-transform: uppercase;
+    }
+}

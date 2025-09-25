@@ -1,0 +1,23 @@
+<form (ngSubmit)="onSubmit"
+    [formGroup]="form">
+    <div class="header">admin only</div>
+    <mat-form-field>
+        <mat-label>email</mat-label>
+        <input type="text"
+            matInput
+            formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>password</mat-label>
+        <input type="text"
+            matInput
+            formControlName="password">
+    </mat-form-field>
+    <div class="buttons">
+
+        <button mat-button
+            (click)="authStore.login(form.value)">submit</button>
+        <button mat-button
+            (click)="onCancel()">cancel</button>
+    </div>
+</form>

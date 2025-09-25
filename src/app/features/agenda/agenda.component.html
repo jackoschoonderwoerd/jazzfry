@@ -1,0 +1,21 @@
+<div class="bookings">
+    @if(authStore.isLoggedIn()&& !bookingsStore.showingAll()){
+    <button class="get-all"
+        mat-button
+        (click)="bookingsStore.getAllBookings()">get all</button>
+    }
+    @if(authStore.isLoggedIn()&& bookingsStore.showingAll()){
+    <button class="get-all"
+        mat-button
+        (click)="bookingsStore.getBookings()">get from today</button>
+    }
+
+
+    @for(booking of bookingsStore.bookings();track $index) {
+    <div class="booking">
+        <app-booking [booking]="booking"
+            [index]="$index"></app-booking>
+        <!-- {{booking|json}} -->
+    </div>
+    }
+</div>

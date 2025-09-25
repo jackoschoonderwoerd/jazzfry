@@ -1,0 +1,25 @@
+<div class="dialog-container">
+    <mat-dialog-actions>
+
+        <button class="close-btn"
+            mat-icon-button
+            mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-dialog-actions>
+
+    @if(loading()) {
+    <mat-spinner></mat-spinner>
+    }
+    <iframe [src]="src"
+        width="100%"
+        height="100%"
+        tabindex="-1"
+        style="border:0"
+        allowfullscreen
+        loading="lazy"
+        (load)="onIframeLoad()">
+    </iframe>
+
+
+</div>

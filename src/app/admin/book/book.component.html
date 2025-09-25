@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <div class="apps">
+        <app-date-picker></app-date-picker>
+        <app-venue-picker></app-venue-picker>
+        <app-time-picker></app-time-picker>
+        <app-staff-picker></app-staff-picker>
+        <app-private-party-picker></app-private-party-picker>
+    </div>
+    <div class="book-store">
+        <div class="header">book store</div>
+        <div class="date">{{bookStore.date()}}</div>
+        @if(bookStore.venue()) {
+        <div class="venue">{{venueStore.getVenueNameById(bookStore.venue()) }}</div>
+        }
+        <div class="start">{{bookStore.start()}}</div>
+        <div class="end">{{bookStore.end()}}</div>
+        <div class="staff-members">
+            @for(id of bookStore.staffMemberIds();track $index) {
+
+            <app-staff-member [id]="id"></app-staff-member>
+            <div class="staff-member">
+
+
+                <!-- <div class="personalia">
+                    <div class="first-name"> {{staffMember.personalia.firstName}}</div>
+                    @if(staffMember.personalia.particles) {
+                    <div class="particles">{{staffMember.personalia.particles}}</div>
+                    }
+                    <div class="last-name">{{staffMember.personalia.lastName}}</div>
+                </div> -->
+            </div>
+            }
+
+        </div>
+        <div class="private-party"><span>private party: &nbsp;</span>{{bookStore.privateParty()}}</div>
+        <div class="editmode">editmode: {{bookStore.editmode()}}</div>
+        @if(bookStore.id()){
+        <div class="id">booking id: {{bookStore.id()}}</div>
+        } @else {
+        <div class="new-booking">
+            new booking
+        </div>
+        }
+        <div class="buttons">
+            @if(bookStore.formTouched()){
+            <button class="book"
+                [style.background-color]="bookStore.formTouched() ? 'red' : 'green'"
+                [style.color]="bookStore.formTouched() ? 'white' : 'white'"
+                mat-raised-button
+                (click)="onBook()">{{bookStore.editmode() ? 'update':'book'}}</button>
+            }
+            <button class="cancel"
+                mat-raised-button
+                (click)="onCancel()">cancel</button>
+        </div>
+
+    </div>
+</div>

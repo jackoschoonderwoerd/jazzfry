@@ -1,0 +1,82 @@
+import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
+import { initialVenueSlice } from "./venue.slice";
+import { computed, inject } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+
+import { FirebaseError } from "@angular/fire/app";
+import { FirestoreService } from "../../../shared/firestore.service";
+import { ConfirmService } from "../../../shared/confirm.service";
+import { SnackbarService } from "../../../shared/snackbar.service";
+import { Venue } from "../../../models/venue.model";
+import { PATH_TO_VENUES } from "../../../models/constants";
+
+export const VenuesStore = signalStore(
+    { providedIn: 'root' },
+    withState(initialVenueSlice),
+    withComputed((store) => ({
+        editmode: computed(() => store.selectedVenue() ? true : false)
+    })),
+    withMethods((store) => {
+        const fs = inject(FirestoreService); // ✅ Inject once at the top
+        const dialog = inject(MatDialog);
+        const confirmService = inject(ConfirmService);
+        const snackbarService = inject(SnackbarService)
+
+        return {
+            addVenue: (venue: Venue) => {
+                if (!store.editmode()) {
+                    fs.addDoc(PATH_TO_VENUES, venue)
+                        .then((res: any) => snackbarService.openSnackbar('venue added'))
+                        .catch((err: FirebaseError) => {
+                            console.log(err);
+                            snackbarService.openSnackbar(`there was an error; ${err.message}`)
+                        })
+                } else {
+                    const venueId = store.selectedVenue().id
+                    const path = `${PATH_TO_VENUES}/${venueId}`
+                    fs.updateDoc(path, venue)
+                        .then((res: any) => {
+                            snackbarService.openSnackbar('venue updated')
+                        })
+                        .catch((err: FirebaseError) => {
+                            console.error(err);
+                            snackbarService.openSnackbar(`there was an error; ${err.message}`)
+                        })
+                }
+            },
+            deleteVenue: (id) => {
+                confirmService.getConfirmation().subscribe((confirmation: boolean) => {
+                    if (confirmation) {
+                        const path = `${PATH_TO_VENUES}/${id}`
+                        fs.deleteDoc(path)
+                            .then((res: any) => {
+                                snackbarService.openSnackbar('venue deleted')
+                            })
+                            .catch((err: FirebaseError) => {
+                                console.error(err);
+                                snackbarService.openSnackbar(`operation failde due to: ${err.message}`)
+                            })
+                    } else {
+                        snackbarService.openSnackbar('operation aborted by user')
+                    }
+                })
+            },
+            getVenues: () => {
+                fs.collection(PATH_TO_VENUES).subscribe((venues: Venue[]) => {
+                    patchState(store, { venues })
+                })
+            },
+            selectVenue: (venue: Venue) => {
+                patchState(store, { selectedVenue: venue })
+            },
+            getVenueById(id) {
+
+                return store.venues().find(v => v.id === id)
+            },
+            getVenueNameById(id: string): string {
+                const venue = store.venues().find(v => v.id === id);
+                return venue.name
+            }
+        };
+    }),
+);

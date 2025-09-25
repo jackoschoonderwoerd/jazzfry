@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <div class="staff-members">
+        @for(staffMember of staffStore.staffMembers(); track $index){
+        <app-staff-member [staffMember]="staffMember"></app-staff-member>
+        }
+        <button mat-icon-button
+            (click)="addStaff()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

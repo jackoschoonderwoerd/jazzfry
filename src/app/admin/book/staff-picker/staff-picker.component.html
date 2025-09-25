@@ -1,0 +1,24 @@
+<div class="container">
+
+    @for(staffMember of staffStore.staffMembers();track $index) {
+    <mat-checkbox [checked]="isActiveStaffMember(staffMember)"
+        (change)="checkboxChange($event, staffMember.id)">
+        <div class="info">
+
+            <div class="personalia">
+                <div>{{staffMember.personalia.firstName}}</div>
+
+                <div>{{staffMember.personalia.particles}}</div>
+                <div>{{staffMember.personalia.lastName}}</div>
+            </div>
+            <div class="instruments">
+                @for(instrument of staffMember.instruments; track $index) {
+                <div class="instrument">
+                    {{instrument}}
+                </div>
+                }
+            </div>
+        </div>
+    </mat-checkbox>
+    }
+</div>

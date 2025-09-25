@@ -1,0 +1,13 @@
+:host {
+    display: block; // ensures the host can expand
+    min-height: 100vh;
+
+    .bookings {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+}

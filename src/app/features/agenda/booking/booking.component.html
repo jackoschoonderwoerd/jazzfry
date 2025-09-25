@@ -1,0 +1,61 @@
+<!-- {{booking|json}} -->
+<mat-accordion class="no-padding">
+
+    <mat-expansion-panel hideToggle
+        [ngClass]="getCondition() ? 'expansion-panel-active' : 'expansion-panel-inactive'"
+        [expanded]="index === bookingsStore.indexSelectedBooking()"
+        class="no-body-padding"
+        (click)="onPanel(index)">
+        <mat-expansion-panel-header [ngClass]="getCondition() ? 'expansion-panel-header-active' : 'expansion-panel-header-inactive'">
+            <mat-panel-title>
+
+                @if(authStore.isLoggedIn()){
+                <div class="editor">
+
+                    <button mat-icon-button
+                        (click)="onEdit($event)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button
+                        (click)="bookStore.deleteBooking(booking.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                }
+                <div class="user">
+                    <div class="start"
+                        [ngClass]="getCondition() ? 'user-active' : 'user-inactive'">
+                        {{booking?.date?.seconds*1000|date:'fullDate'}}
+                    </div>
+
+                    <div class="venue-name"
+                        [ngClass]="getCondition() ? 'venue-name-active' : 'venue-name-inactive'">
+                        {{venuesStore.getVenueNameById(booking?.venue)}}
+                    </div>
+                </div>
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <div class="booking-info">
+            @if(booking?.privateParty) {
+            <div class="private-party">private party, invitation only</div>
+            }
+            <div class="hours">
+                <span>van</span>
+                <div class="start">{{booking?.start}}</div>
+                <span>tot</span>
+                <div class="end">{{booking?.end}}</div>
+            </div>
+            <app-user-venue [venue]="venuesStore.getVenueById(booking?.venue)"></app-user-venue>
+
+            <div class="staff-members">
+                @for(id of booking?.staffMemberIds; track $index) {
+
+                <app-user-staff-member [staffMember]="staffStore.getStaffMemberById(id)"></app-user-staff-member>
+
+                }
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

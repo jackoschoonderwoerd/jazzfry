@@ -1,0 +1,105 @@
+mat-accordion {
+    mat-expansion-panel {
+        // background-color: green !important;
+        background-color: var(--sahara);
+        // color: var(--blue);
+        padding: 0 !important;
+        margin: 0 !important;
+
+        mat-expansion-panel-header {
+            // background-color: var(--blue) !important;
+            // background-color: orange !important;
+            mat-panel-title {
+                font-size: 0.9rem;
+                .editor {
+                    button {
+                        color: white;
+                    }
+                }
+                .user {
+                    // color: var(--sahara);
+                    .start {
+                        // width: 6rem;
+                        display: flex;
+                    }
+                    .venue-name {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+        .booking-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.2rem;
+            border: 5px solid var(--rust);
+            border-radius: 13px;
+            padding: 0.5rem;
+
+            .private-party {
+                margin: auto;
+                text-transform: uppercase;
+                font-weight: 500;
+                padding: 0.3rem 0.5rem;
+                border-radius: 10px;
+                background-color: var(--rust);
+                color: var(--sahara);
+                width: fit-content;
+            }
+
+            .hours {
+                // border: 1px solid gray;
+                display: flex;
+                gap: 0.5rem;
+            }
+            .staff-members {
+                display: flex;
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+        }
+    }
+}
+
+// .no-padding .mat-expansion-panel-header {
+//     padding: 0;
+// }
+
+.no-padding .mat-expansion-panel-body {
+    padding: 0 !important;
+    margin: 0 !important; /* just in case */
+}
+
+.no-padding .mat-expansion-panel {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.no-body-padding .mat-expansion-panel-body {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.mat-expansion-indicator::after {
+    color: var(--sahara) !important;
+}
+
+.expansion-panel-active {
+    // border: 3px solid red;
+    border-radius: 100px;
+}
+.expansion-panel-header-active {
+    background-color: var(--sahara) !important;
+    color: black;
+}
+.expansion-panel-header-inactive {
+    background-color: var(--blue) !important;
+    color: white !important;
+}
+.user-active,
+.venue-name-active {
+    color: black !important;
+}
+.user-inactive,
+.venue-name-inactive {
+    color: var(--sahara) !important;
+}

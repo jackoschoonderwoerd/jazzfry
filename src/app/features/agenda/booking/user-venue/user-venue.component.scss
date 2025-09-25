@@ -1,0 +1,44 @@
+.venue {
+    padding: 0.5rem;
+    position: relative;
+    .link_name_place {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .link_name {
+            // border: 1px solid black;
+            align-items: center;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            .name {
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+            .link {
+                // margin-left: 1rem;
+                // cursor: pointer;
+            }
+        }
+    }
+    .address_place {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .address {
+            .street_number {
+                display: flex;
+                gap: 0.5rem;
+            }
+            .city {
+                text-transform: capitalize;
+            }
+        }
+    }
+    // .place {
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    // }
+}

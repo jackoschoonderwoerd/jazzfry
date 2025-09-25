@@ -1,0 +1,11 @@
+<div class="container">
+
+    <div class="visits">
+
+        @for(visit of authStore.visits();track $index){
+
+        <div class="visit">{{visit.visit.seconds*1000|date:'long'}}</div>
+        }
+    </div>
+    <div class="visits-count">visits count: &nbsp;{{authStore.visits().length}}</div>
+</div>

@@ -1,0 +1,30 @@
+.wrapper {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--sahara);
+    .apps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    .book-store {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        .staff-members {
+            .staff-member {
+                .personalia {
+                    display: flex;
+                    gap: 0.5rem;
+                }
+            }
+        }
+        .venue {
+        }
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+    }
+}

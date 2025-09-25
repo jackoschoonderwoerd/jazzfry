@@ -1,0 +1,70 @@
+<div class="wrapper">
+    <form [formGroup]="form">
+        <div class="header">{{venueStore.editmode()}}</div>
+        <mat-form-field>
+            <mat-label>name</mat-label>
+            <input type="text"
+                matInput
+                formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>street</mat-label>
+            <input type="text"
+                matInput
+                formControlName="street">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>number</mat-label>
+            <input type="number"
+                matInput
+                formControlName="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>city</mat-label>
+            <input type="text"
+                matInput
+                formControlName="city">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>country</mat-label>
+            <input type="text"
+                matInput
+                formControlName="country">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>contact</mat-label>
+            <input type="text"
+                matInput
+                formControlName="contact">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>phone</mat-label>
+            <input type="text"
+                matInput
+                formControlName="phone">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>website</mat-label>
+            <input type="text"
+                matInput
+                formControlName="website">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>map url</mat-label>
+            <textarea matInput
+                formControlName="mapUrl"></textarea>
+        </mat-form-field>
+        <div class="buttons">
+            <button mat-button
+                class="form-button"
+                (click)="addVenue()"
+                mat-dialog-close>{{venueStore.editmode()? 'update':'add'}} venue</button>
+            <button class="form-button"
+                mat-button
+                mat-dialog-close
+                (click)="venueStore.selectVenue(null)">cancel</button>
+        </div>
+
+    </form>
+</div>

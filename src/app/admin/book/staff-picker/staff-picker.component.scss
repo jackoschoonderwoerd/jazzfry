@@ -1,0 +1,22 @@
+.container {
+    mat-checkbox {
+        display: flex;
+        // gap: 0.5rem;
+        .info {
+            display: flex;
+
+            // gap: 1rem;
+            .personalia {
+                display: flex;
+                gap: 0.3rem;
+                margin-right: 1rem;
+                div {
+                    text-transform: capitalize;
+                }
+            }
+            .instruments {
+                font-style: italic;
+            }
+        }
+    }
+}

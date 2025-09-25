@@ -1,0 +1,32 @@
+<div class="venue-properties">
+
+    <div class="venue-property"><span>name: </span>{{venue.name}}</div>
+    <div class="venue-property"><span>street: </span>{{venue.street}}</div>
+    <div class="venue-property"><span>number: </span>{{venue.number}}</div>
+    <div class="venue-property"><span>city: </span>{{venue.city}}</div>
+    <div class="venue-property"><span>country: </span>{{venue.country}}</div>
+    <div class="venue-property"><span>phone: </span>{{venue.phone}}</div>
+    <div class="venue-property"><span>contact: </span>{{venue.contact}}</div>
+    <div class="venue-property"><span>website: </span>{{venue.website}}</div>
+    <div class="venue-property"><span>map url: </span>
+        <div class="url">
+            @if(venue.mapUrl) {
+            <div class="url">active</div>
+            } @else {
+            <div class="url">non-active</div>
+            }
+        </div>
+    </div>
+</div>
+<div class="buttons">
+    <button mat-icon-button
+        class="delete"
+        (click)="venueStore.deleteVenue(venue.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button
+        class="edit"
+        (click)="onEdit()">
+        <mat-icon>edit</mat-icon>
+    </button>
+</div>

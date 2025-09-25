@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--sahara);
+    .venues {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+        gap: 1rem;
+    }
+}

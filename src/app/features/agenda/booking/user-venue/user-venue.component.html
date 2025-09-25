@@ -1,0 +1,31 @@
+<div class="venue">
+    <div class="link_name_place">
+        <div class="link_name">
+            <div class="name">{{venue()?.name}}</div>
+            <button mat-icon-button
+                (click)="openWebsiteDialog()">
+                <mat-icon class="link">link</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="address_place">
+        <div class="address">
+            <div class="street_number">
+                <div class="street">{{venue()?.street}}</div>
+                <div class="number">{{venue()?.number}}</div>
+            </div>
+            <div class="city">{{venue()?.city}}</div>
+        </div>
+        @if(venue()?.mapUrl){
+        <button class="place"
+            mat-icon-button
+            (click)="onMapDialog()">
+            <mat-icon>place</mat-icon>
+        </button>
+        }
+    </div>
+
+
+
+
+</div>

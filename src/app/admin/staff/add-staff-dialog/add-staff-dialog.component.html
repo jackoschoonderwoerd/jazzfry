@@ -1,0 +1,50 @@
+@let personalia = addStaffStore.staffMember()?.personalia;
+
+<div class="wrapper">
+    <p mat-dialog-title>add-staff</p>
+    <mat-dialog-content>
+
+        <div class="forms">
+
+            <app-personalia-form>
+            </app-personalia-form>
+
+
+
+            <app-instrument-form-array>
+
+            </app-instrument-form-array>
+        </div>
+        <div class="store">
+
+            <div class="header">staff member</div>
+            <div class="first-name"><span>first name: </span>{{personalia?.firstName}}</div>
+            @if(personalia?.particles){
+            <div class="particles"><span>particles: </span>{{personalia?.particles}}</div>
+            }
+            <div class="last-name"><span>last name: </span>{{personalia?.lastName}}</div>
+
+            @let instruments = addStaffStore.staffMember()?.instruments;
+
+            @for(instrument of instruments; track $index) {
+            <div class="instrument">{{instrument}}</div>
+            }
+
+            <button mat-button
+                class="form-button"
+                (click)="addStaffStore.addStaffMember()"
+                mat-dialog-close>{{addStaffStore.editmode() ? 'update' : 'add' }} staffmember</button>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+
+        <button mat-button
+            mat-dialog-close
+            (click)="addStaffStore.cancelSelectedStaffMember()">cancel
+        </button>
+    </mat-dialog-actions>
+    @let staffMember = addStaffStore.staffMember();
+
+
+</div>

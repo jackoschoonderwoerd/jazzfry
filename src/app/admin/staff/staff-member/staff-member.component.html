@@ -1,0 +1,25 @@
+<div class="staff-member">
+    <!-- <div class="id">{{staffMember|json}}</div> -->
+    <div class="staff-member-info">
+        <div class="personalia">
+            <div class="first-name">{{staffMember?.personalia?.firstName}}</div>
+            @if(staffMember.personalia.particles){
+            <div class="particles">{{staffMember?.personalia?.particles}}</div>
+            }
+            <div class="last-name">{{staffMember?.personalia?.lastName}}</div>
+        </div>
+        <div class="instruments">
+            @for(instrument of staffMember?.instruments; track $index) {
+            <div class="instrument">{{instrument}}</div>
+            }
+        </div>
+    </div>
+
+    <div class="buttons">
+
+        <button mat-icon-button
+            (click)="addStaffStore.setActiveStaffMember(staffMember)">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+</div>

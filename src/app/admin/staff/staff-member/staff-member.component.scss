@@ -1,0 +1,23 @@
+.staff-member {
+    border: 1px solid gray;
+    padding: 0.3rem;
+    width: 100%;
+    display: flex;
+    .staff-member-info {
+        flex-grow: 1;
+        .personalia {
+            display: flex;
+            gap: 0.5rem;
+            .first-name,
+            .last-name {
+                text-transform: capitalize;
+            }
+        }
+        .instruments {
+            text-indent: 1rem;
+            .instrument {
+                font-style: italic;
+            }
+        }
+    }
+}
