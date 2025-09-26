@@ -7,10 +7,11 @@ import { BookingsStore } from './features/agenda/bookings-store/bookings.store';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { User as FirebaseUser } from "@angular/fire/auth";
 import { AuthStore } from './auth/auth.store';
+import { FooterComponent } from './navigation/footer/footer.component';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, HeaderComponent],
+    imports: [RouterOutlet, HeaderComponent, FooterComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })

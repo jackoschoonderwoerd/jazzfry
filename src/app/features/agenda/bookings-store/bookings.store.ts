@@ -39,11 +39,14 @@ export const BookingsStore = signalStore(
                     })
             },
             getBookings: () => {
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1)
                 const criteria = {
                     path: PATH_TO_BOOKINGS,
                     queryFieldname: 'date',
                     queryOperator: '>',
-                    queryCriterium: new Date(),
+                    queryCriterium: yesterday,
                     orderByFieldname: 'date',
                     orderDirection: 'asc'
                 }

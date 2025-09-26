@@ -26,6 +26,9 @@ export const UiStore = signalStore(
             storeLanguage(language: string) {
                 patchState(store, { activeLanguage: language })
             },
+            setActiveLanguage(language: string) {
+                patchState(store, { activeLanguage: language })
+            }
         };
     }),
 );

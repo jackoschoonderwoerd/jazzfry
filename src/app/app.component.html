@@ -1,5 +1,12 @@
-<app-header></app-header>
-<div class="outlet-wrapper">
+<div class="layout">
+    <div class="header-container">
 
-    <router-outlet />
+        <app-header></app-header>
+    </div>
+    <main class="outlet-wrapper">
+        <router-outlet />
+    </main>
+    <div class="footer-container">
+        <app-footer></app-footer>
+    </div>
 </div>

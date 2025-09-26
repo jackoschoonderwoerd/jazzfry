@@ -1,13 +1,34 @@
 mat-toolbar {
-    border-bottom: 1px solid gray;
     background-color: var(--rust);
     display: flex;
     justify-content: space-between;
-    .link-active {
-        background-color: var(--blue);
+    .header-left {
+        display: flex;
+        // justify-items: center;
+        justify-content: space-between;
+        .buttons {
+            // border: 1px solid white;
+            display: flex;
+            gap: 0.5rem;
+            button {
+                background-color: var(--sahara);
+            }
+            .link-active {
+                background-color: var(--blue);
+                color: var(--sahara);
+            }
+        }
     }
-    button {
-        color: var(--sahara);
-        text-transform: uppercase;
+
+    .header-right {
+        display: flex;
+        // border: 1px solid white;
+        align-items: center;
+        .app-flags-container {
+        }
+        button {
+            color: var(--sahara);
+            text-transform: uppercase;
+        }
     }
 }

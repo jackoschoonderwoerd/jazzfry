@@ -1,0 +1,27 @@
+.wrapper {
+    height: 2rem;
+    background-color: var(--rust);
+    padding: 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+    padding-right: 1rem;
+    border-top: 1px solid var(--blue);
+    .center {
+        margin: auto;
+        .jazzfry {
+            text-transform: uppercase;
+        }
+    }
+    .right {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .login,
+        .logout {
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.flags-container {
+    display: flex;
+    gap: 0.3rem;
+    img {
+        height: 1.5rem;
+        width: 2rem;
+    }
+}
+.active {
+    border: 3px solid var(--sahara);
+}
+.non-active {
+    border: 3px solid transparent;
+}

@@ -1,6 +1,7 @@
 :host {
     display: block; // ensures the host can expand
     min-height: 100vh;
+    padding: 0.3rem;
 
     .bookings {
         width: 100%;

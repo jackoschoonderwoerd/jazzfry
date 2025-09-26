@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import { Router } from '@angular/router';
+import { UiStore } from '../../shared/ui-store/ui.store';
 
 @Component({
     selector: 'app-home',
@@ -11,4 +12,5 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
     router = inject(Router)
+    uiStore = inject(UiStore)
 }

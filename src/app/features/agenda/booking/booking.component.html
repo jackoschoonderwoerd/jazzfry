@@ -24,9 +24,14 @@
                 </div>
                 }
                 <div class="user">
-                    <div class="start"
+                    <!-- <div class="start"
                         [ngClass]="getCondition() ? 'user-active' : 'user-inactive'">
                         {{booking?.date?.seconds*1000|date:'fullDate'}}
+                    </div> -->
+                    <div class="start"
+                        [ngClass]="getCondition() ? 'user-active' : 'user-inactive'">
+
+                        {{getDate()}}
                     </div>
 
                     <div class="venue-name"

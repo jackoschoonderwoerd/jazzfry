@@ -16,18 +16,21 @@ import { AuthStore } from '../../../auth/auth.store';
 import { VenuesStore } from '../../../admin/venues/venue-store/venue.store';
 import { MapDialogComponent } from './user-venue/map-dialog/map-dialog.component';
 import { StaffStore } from '../../../admin/staff/staff-store/staff.store';
+import { MyDatePipe } from '../../../shared/pipes/my-date.pipe';
+import { UiStore } from '../../../shared/ui-store/ui.store';
 
 
 @Component({
     selector: 'app-booking',
     imports: [
         MatExpansionModule,
-        DatePipe,
+
         MatButtonModule,
         MatIconModule,
         UserVenueComponent,
         UserStaffMemberComponent,
-        NgClass
+        NgClass,
+
     ],
     templateUrl: './booking.component.html',
     styleUrl: './booking.component.scss'
@@ -44,7 +47,8 @@ export class BookingComponent {
     authStore = inject(AuthStore)
     dialog = inject(MatDialog);
     bookingsStore = inject(BookingsStore);
-    venuesStore = inject(VenuesStore)
+    venuesStore = inject(VenuesStore);
+    uiStore = inject(UiStore)
 
 
 
@@ -64,6 +68,45 @@ export class BookingComponent {
 
     getExpansionPanelHeaderStyle() {
         return { 'color': 'red!important' }
+    }
+    getDate() {
+
+
+        const date: Date = new Date(this.booking.date.seconds * 1000)
+
+        if (this.uiStore.activeLanguage() === 'nl') {
+
+            return `${this.getMyDay(date.getDay())} ${date.getDate()} ${this.getMyMonth(date)}`
+        } else if (this.uiStore.activeLanguage() === 'en') {
+            return `${this.getMyDay(date.getDay())} ${this.getMyMonth(date)} ${date.getDate()}`
+        }
+    }
+
+    private getMyDay(dayNumber: number) {
+        if (this.uiStore.activeLanguage() === 'nl') {
+            const days = [
+                'zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'
+            ]
+            console.log(days[dayNumber])
+            return days[dayNumber]
+        } else if (this.uiStore.activeLanguage() === 'en') {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'WednesDay', 'Thursday', 'Friday', 'Saturday']
+            return days[dayNumber]
+        }
+    }
+    private getMyMonth(date: Date) {
+        const monthNumber: number = date.getMonth()
+        if (this.uiStore.activeLanguage() === 'nl') {
+            const months = [
+                'januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'
+            ]
+            console.log(months[monthNumber - 1])
+            return months[monthNumber]
+        } else if (this.uiStore.activeLanguage() === 'en') {
+            const months = ['Januari', 'Februari', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            console.log(months[monthNumber])
+            return months[monthNumber]
+        }
     }
 
 }

@@ -3,6 +3,7 @@
 
 export interface UiSlice {
     readonly activeLanguage: string;
+    readonly availableLanguages: string[];
 
 
     // readonly staffMember: StaffMember;
@@ -10,7 +11,9 @@ export interface UiSlice {
 }
 
 export const initialUiSlice: UiSlice = {
-    activeLanguage: 'nl'
+    activeLanguage: 'en',
+    availableLanguages: ['nl', 'en']
+
 
 
 

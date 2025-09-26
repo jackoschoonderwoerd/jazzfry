@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <div class="center">
+
+        <div class="jazzfry">
+            jazzfry
+        </div>
+    </div>
+    <div class="right">
+        @if(authStore.isLoggedIn()){
+        <div routerLink="admin">admin</div>
+        }
+
+        @if(!authStore.isLoggedIn()){
+        <div routerLink="login">
+            <mat-icon>login</mat-icon>
+        </div>
+        } @else {
+        <div class="logout"
+            (click)="authStore.logout()">
+            <mat-icon>logout</mat-icon>
+        </div>
+
+        }
+    </div>
+</div>

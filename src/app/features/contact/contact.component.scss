@@ -1,11 +1,15 @@
-.container {
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    background-color: var(--sahara);
-    padding: 1rem;
-    border-radius: 10px;
+.wrapper {
+    padding: 0 0.3rem;
+    .container {
+        margin-right: 0.3rem;
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        background-color: var(--sahara);
+        padding: 1rem;
+        border-radius: 10px;
+    }
 }
