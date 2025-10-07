@@ -1,9 +1,14 @@
 mat-toolbar {
     border-bottom: 1px solid gray;
+    background-color: var(--rust);
     display: flex;
     gap: 0.5rem;
+    button {
+        background-color: var(--sahara);
+        text-transform: uppercase;
+    }
     .link-active {
-        background-color: black;
-        color: white;
+        background-color: var(--blue);
+        color: var(--sahara);
     }
 }

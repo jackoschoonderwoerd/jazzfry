@@ -1,0 +1,61 @@
+@let booking = bookingsStore?.future_hideHidden()[0];
+@let venue = venuesStore?.getVenueById(booking?.venue);
+
+
+<div class="wrapper">
+
+    <div class="content">
+        <div class="header">upcoming</div>
+        <div class="app-flags-wrapper">
+            <app-flags></app-flags>
+        </div>
+        <div class="booking">
+            <div class="app-date-wrapper">
+                <app-date [seconds]="booking?.date.seconds"></app-date>
+            </div>
+            <div class="app-venue-wrapper">
+                <app-user-venue [venue]="venue"></app-user-venue>
+            </div>
+            <div class="hours">
+                @if(uiStore.activeLanguage()==='nl'){
+                <span>van&nbsp;</span>
+                }
+                @if(uiStore.activeLanguage()==='en'){
+                <span>from&nbsp;</span>
+                }
+                <app-hour [hour]="booking?.start"></app-hour>
+
+
+                @if(uiStore.activeLanguage()==='nl'){
+                <span>tot&nbsp;</span>
+                }
+                @if(uiStore.activeLanguage()==='en'){
+                <span>until&nbsp;</span>
+                }
+                <app-hour [hour]="booking?.end"></app-hour>
+
+            </div>
+
+
+
+
+            <div class="staff-members">
+                @for(id of booking?.staffMemberIds;track $index) {
+                <div class="staff-member">
+                    <app-user-staff-member [staffMember]="staffStore?.getStaffMemberById(id)"></app-user-staff-member>
+
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="buttons">
+            <button mat-icon-button
+                (click)="onClose()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+</div>

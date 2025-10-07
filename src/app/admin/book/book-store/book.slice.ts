@@ -11,6 +11,7 @@ export interface BookSlice {
     end: string;
     venue: Venue;
     privateParty: boolean;
+    hidden: boolean;
     editmode: boolean;
     formTouched: boolean;
 }
@@ -23,6 +24,7 @@ export const initialBookSlice: BookSlice = {
     end: '',
     venue: null,
     privateParty: false,
+    hidden: false,
     editmode: false,
     formTouched: false
 }

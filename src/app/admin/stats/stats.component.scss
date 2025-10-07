@@ -1,0 +1,16 @@
+.wrapper {
+    background-color: var(--sahara);
+    // display: grid;
+    // grid-template-columns: 3fr 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .top {
+        display: flex;
+        gap: 1rem;
+        .amsterdam-future {
+            background-color: var(--rust);
+            color: var(--sahara);
+        }
+    }
+}

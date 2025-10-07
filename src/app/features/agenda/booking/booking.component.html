@@ -1,66 +1,103 @@
-<!-- {{booking|json}} -->
-<mat-accordion class="no-padding">
+<!-- <div class="accordion-wrapper"
+    [ngStyle]="index === bookingsStore.indexSelectedBooking() ? {border:'10px solid var(--rust)'}:{border:'none'}"> -->
 
-    <mat-expansion-panel hideToggle
-        [ngClass]="getCondition() ? 'expansion-panel-active' : 'expansion-panel-inactive'"
-        [expanded]="index === bookingsStore.indexSelectedBooking()"
-        class="no-body-padding"
-        (click)="onPanel(index)">
-        <mat-expansion-panel-header [ngClass]="getCondition() ? 'expansion-panel-header-active' : 'expansion-panel-header-inactive'">
-            <mat-panel-title>
+<div class="accordion-wrapper"
+    [ngClass]="panelOpen() ? 'accordion-wrapper-active':'accordion-wrapper-inactive'">
+
+    <mat-accordion class="no-padding">
+
+        <mat-expansion-panel hideToggle
+            (opened)="onPanelOpened()"
+            (closed)="onPanelClosed()"
+            [ngClass]="getIsMonthOdd() ? 'expansion-panel-is-odd' : 'expansion-panel-is-even'"
+            [expanded]="index === bookingsStore.indexSelectedBooking()"
+            class="no-body-padding"
+            (click)="setIndex(index)">
+            <mat-expansion-panel-header [ngClass]="getIsMonthOdd() ? 'expansion-panel-header-is-odd' : 'expansion-panel-header-is-even'">
+                <mat-panel-title>
+
+                    @if(authStore.isLoggedIn()){
+                    <div class="editor">
+
+                        <button mat-icon-button
+                            (click)="onEdit($event)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+
+                        <button mat-icon-button
+                            (click)="bookStore.deleteBooking(booking.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                    }
+                    <div class="user">
+
+                        <div class="start"
+                            [ngClass]="getIsMonthOdd() ? 'user-is-odd' : 'user-is-even'">
+                            <app-date [seconds]="booking.date.seconds"></app-date>
+                        </div>
+                        <div class="venue-name"
+                            [ngClass]="{
+                                'venue-name-is-odd': getIsMonthOdd(),
+                                'venue-name-is-even': !getIsMonthOdd(),
+                                'panel-open': panelOpen(),
+                                'panel-closed': !panelOpen()
+                                }">
+                            {{ venuesStore.getVenueNameById(booking?.venue) }}
+                        </div>
+
+                    </div>
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <div class="booking-info">
+                @if(booking.start && booking.end) {
+                <div class="hours">
+                    @if(uiStore.activeLanguage()==='nl') {
+                    <span>van</span>
+                    }
+                    @if(uiStore.activeLanguage()==='en') {
+                    <span>from</span>
+                    }
+                    <div class="start">{{booking?.start}}</div>
+                    @if(uiStore.activeLanguage()==='nl') {
+                    <span>tot</span>
+                    }
+                    @if(uiStore.activeLanguage()==='en') {
+                    <span>until</span>
+                    }
+
+                    <div class="end">{{booking?.end}}</div>
+                </div>
+                }
+
+
+                @if(!booking.privateParty){
+
+                <app-user-venue [showName]="false"
+                    [venue]="venuesStore.getVenueById(booking?.venue)"></app-user-venue>
+                } @else {
+                <div class="private-party-notification">
+                    private party, not open to the public
+                </div>
+                }
+                <!-- @if(booking?.privateParty) {
+                <div class="private-party">private party, invitation only</div>
+                } -->
 
                 @if(authStore.isLoggedIn()){
-                <div class="editor">
-
-                    <button mat-icon-button
-                        (click)="onEdit($event)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-
-                    <button mat-icon-button
-                        (click)="bookStore.deleteBooking(booking.id)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </div>
+                <div class="hidden"><span>hidden:&nbsp;</span>{{booking.hidden}}</div>
                 }
-                <div class="user">
-                    <!-- <div class="start"
-                        [ngClass]="getCondition() ? 'user-active' : 'user-inactive'">
-                        {{booking?.date?.seconds*1000|date:'fullDate'}}
-                    </div> -->
-                    <div class="start"
-                        [ngClass]="getCondition() ? 'user-active' : 'user-inactive'">
 
-                        {{getDate()}}
-                    </div>
 
-                    <div class="venue-name"
-                        [ngClass]="getCondition() ? 'venue-name-active' : 'venue-name-inactive'">
-                        {{venuesStore.getVenueNameById(booking?.venue)}}
-                    </div>
+                <div class="staff-members">
+                    @for(id of booking?.staffMemberIds; track $index) {
+
+                    <app-user-staff-member [staffMember]="staffStore.getStaffMemberById(id)"></app-user-staff-member>
+
+                    }
                 </div>
-            </mat-panel-title>
-
-        </mat-expansion-panel-header>
-        <div class="booking-info">
-            @if(booking?.privateParty) {
-            <div class="private-party">private party, invitation only</div>
-            }
-            <div class="hours">
-                <span>van</span>
-                <div class="start">{{booking?.start}}</div>
-                <span>tot</span>
-                <div class="end">{{booking?.end}}</div>
             </div>
-            <app-user-venue [venue]="venuesStore.getVenueById(booking?.venue)"></app-user-venue>
-
-            <div class="staff-members">
-                @for(id of booking?.staffMemberIds; track $index) {
-
-                <app-user-staff-member [staffMember]="staffStore.getStaffMemberById(id)"></app-user-staff-member>
-
-                }
-            </div>
-        </div>
-    </mat-expansion-panel>
-</mat-accordion>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

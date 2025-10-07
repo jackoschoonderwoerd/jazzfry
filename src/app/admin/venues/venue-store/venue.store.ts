@@ -9,6 +9,7 @@ import { ConfirmService } from "../../../shared/confirm.service";
 import { SnackbarService } from "../../../shared/snackbar.service";
 import { Venue } from "../../../models/venue.model";
 import { PATH_TO_VENUES } from "../../../models/constants";
+import { Router } from "@angular/router";
 
 export const VenuesStore = signalStore(
     { providedIn: 'root' },
@@ -20,13 +21,17 @@ export const VenuesStore = signalStore(
         const fs = inject(FirestoreService); // ✅ Inject once at the top
         const dialog = inject(MatDialog);
         const confirmService = inject(ConfirmService);
-        const snackbarService = inject(SnackbarService)
+        const snackbarService = inject(SnackbarService);
+        const router = inject(Router)
 
         return {
             addVenue: (venue: Venue) => {
                 if (!store.editmode()) {
                     fs.addDoc(PATH_TO_VENUES, venue)
-                        .then((res: any) => snackbarService.openSnackbar('venue added'))
+                        .then((res: any) => {
+                            snackbarService.openSnackbar('venue added')
+                            router.navigateByUrl('/admin/venues');
+                        })
                         .catch((err: FirebaseError) => {
                             console.log(err);
                             snackbarService.openSnackbar(`there was an error; ${err.message}`)
@@ -37,6 +42,7 @@ export const VenuesStore = signalStore(
                     fs.updateDoc(path, venue)
                         .then((res: any) => {
                             snackbarService.openSnackbar('venue updated')
+                            router.navigateByUrl('/admin/venues');
                         })
                         .catch((err: FirebaseError) => {
                             console.error(err);
@@ -51,6 +57,7 @@ export const VenuesStore = signalStore(
                         fs.deleteDoc(path)
                             .then((res: any) => {
                                 snackbarService.openSnackbar('venue deleted')
+                                router.navigateByUrl('/admin/venues');
                             })
                             .catch((err: FirebaseError) => {
                                 console.error(err);
@@ -74,9 +81,25 @@ export const VenuesStore = signalStore(
                 return store.venues().find(v => v.id === id)
             },
             getVenueNameById(id: string): string {
-                const venue = store.venues().find(v => v.id === id);
+                const venue: Venue = store.venues().find(v => v.id === id);
                 return venue.name
-            }
+            },
+            getVenueCityById(id: string) {
+                const venue = store.venues().find(v => v.id === id);
+                return venue.city;
+            },
+            getVenueStreetById(id: string) {
+                const venue = store.venues().find(v => v.id === id);
+                return venue.street;
+            },
+            getVenueNumberById(id: string) {
+                const venue = store.venues().find(v => v.id === id);
+                return venue.number;
+            },
+            getVenueUrlById(id: string): string {
+                const venue = store.venues().find(v => v.id === id);
+                return venue.website
+            },
         };
     }),
 );

@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 
 import { VenuesStore } from '../venue-store/venue.store';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
     selector: 'app-add-venue-dialog',
@@ -14,7 +16,8 @@ import { VenuesStore } from '../venue-store/venue.store';
         MatButtonModule,
         MatInput,
         MatFormFieldModule,
-        MatDialogModule
+        MatDialogModule,
+        RouterModule
     ],
     templateUrl: './add-venue-dialog.component.html',
     styleUrl: './add-venue-dialog.component.scss'

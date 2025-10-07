@@ -36,9 +36,9 @@ export class StaffMemberComponent implements OnChanges {
     // }
     ngOnChanges(changes: SimpleChanges): void {
         if (this.id) {
-            console.log(this.id)
+
             this.staffMember = this.staffStore.getStaffMemberById(this.id);
-            console.log(this.staffMember)
+
         }
     }
 }

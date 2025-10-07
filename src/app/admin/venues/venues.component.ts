@@ -6,10 +6,11 @@ import { AddVenueDialogComponent } from './add-venue-dialog/add-venue-dialog.com
 import { JsonPipe } from '@angular/common';
 import { VenueComponent } from './venue/venue.component';
 import { VenuesStore } from './venue-store/venue.store';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-venues',
-    imports: [MatButtonModule, VenueComponent],
+    imports: [MatButtonModule, VenueComponent, RouterModule],
     templateUrl: './venues.component.html',
     styleUrl: './venues.component.scss'
 })

@@ -65,6 +65,10 @@ export const BookStore = signalStore(
                 console.log(checked)
                 patchState(store, { privateParty: checked, formTouched: true })
             },
+            hide(checked: boolean) {
+                console.log('hidden', checked);
+                patchState(store, { hidden: checked, formTouched: true });
+            },
             addBooking() {
                 const booking: Booking = {
                     date: store.date(),
@@ -72,7 +76,8 @@ export const BookStore = signalStore(
                     end: store.end(),
                     venue: store.venue(),
                     staffMemberIds: store.staffMemberIds(),
-                    privateParty: store.privateParty()
+                    privateParty: store.privateParty(),
+                    hidden: store.hidden()
                 }
                 console.log(booking)
                 fs.addDoc(PATH_TO_BOOKINGS, booking)
@@ -95,7 +100,8 @@ export const BookStore = signalStore(
                     end: store.end(),
                     venue: store.venue(),
                     staffMemberIds: store.staffMemberIds(),
-                    privateParty: store.privateParty()
+                    privateParty: store.privateParty(),
+                    hidden: store.hidden()
                 }
                 console.log(booking)
                 const path = `${PATH_TO_BOOKINGS}/${booking.id}`

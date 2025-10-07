@@ -8,5 +8,6 @@ export interface Booking {
     end: string;
     venue: Venue;
     staffMemberIds: string[];
-    privateParty?: boolean
+    privateParty?: boolean;
+    hidden: boolean;
 }

@@ -1,44 +1,69 @@
 .venue {
-    padding: 0.5rem;
+    // padding: 0.5rem;
     position: relative;
-    .link_name_place {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    // .link_name_place {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
 
-        .link_name {
-            // border: 1px solid black;
-            align-items: center;
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            .name {
-                text-transform: uppercase;
-                font-weight: 500;
-            }
-            .link {
-                // margin-left: 1rem;
-                // cursor: pointer;
-            }
-        }
-    }
+    //     .link_name {
+    //         // border: 1px solid black;
+    //         align-items: center;
+    //         display: flex;
+    //         width: 100%;
+    //         justify-content: space-between;
+    //         .name {
+    //             text-transform: uppercase;
+    //             font-weight: 500;
+    //         }
+    //         .link {
+    //             // margin-left: 1rem;
+    //             // cursor: pointer;
+    //         }
+    //     }
+    // }
     .address_place {
+        // border: 3px solid var(--blue);
+        color: var(--sahara);
+        background-color: var(--blue);
+        padding: 0.3rem 0.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         .address {
+            .street {
+                text-transform: uppercase;
+            }
             .street_number {
                 display: flex;
                 gap: 0.5rem;
             }
             .city {
-                text-transform: capitalize;
+                text-transform: uppercase;
+            }
+        }
+        .place {
+            mat-icon {
+                color: var(--sahara);
             }
         }
     }
-    // .place {
-    //     position: absolute;
-    //     top: 0;
-    //     right: 0;
-    // }
+    .name_website_link {
+        color: var(--sahara);
+        background-color: var(--blue);
+        padding: 0.3rem 0.5rem;
+        .name_website {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .link-btn {
+            mat-icon {
+                color: var(--sahara);
+            }
+        }
+    }
 }

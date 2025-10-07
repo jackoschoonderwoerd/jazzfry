@@ -1,4 +1,5 @@
 <div class="bookings">
+    <!-- {{bookingsStore.bookingsListVm()|json}} -->
     @if(authStore.isLoggedIn()&& !bookingsStore.showingAll()){
     <button class="get-all"
         mat-button
@@ -11,11 +12,17 @@
     }
 
 
-    @for(booking of bookingsStore.bookings();track $index) {
+    @for(booking of bookingsStore.future_hideHidden();track $index) {
+    <!-- <div class="visible"
+        style="background-color: orange;">
+        {{booking.hidden}}
+    </div> -->
+    <!-- @if(booking.hidden) { -->
     <div class="booking">
         <app-booking [booking]="booking"
             [index]="$index"></app-booking>
         <!-- {{booking|json}} -->
     </div>
     }
+    <!-- } -->
 </div>

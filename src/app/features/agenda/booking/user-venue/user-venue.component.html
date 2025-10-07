@@ -1,13 +1,5 @@
 <div class="venue">
-    <div class="link_name_place">
-        <div class="link_name">
-            <div class="name">{{venue()?.name}}</div>
-            <button mat-icon-button
-                (click)="openWebsiteDialog()">
-                <mat-icon class="link">link</mat-icon>
-            </button>
-        </div>
-    </div>
+
     <div class="address_place">
         <div class="address">
             <div class="street_number">
@@ -24,7 +16,20 @@
         </button>
         }
     </div>
-
+    <div class="name_website_link">
+        <div class="name_website">
+            @if(showName()){
+            <div class="name">{{venue()?.name}}</div>
+            } @else {
+            <div class="website">website:</div>
+            }
+            <button class="link-btn"
+                mat-icon-button
+                (click)="openWebsiteDialog()">
+                <mat-icon>link</mat-icon>
+            </button>
+        </div>
+    </div>
 
 
 

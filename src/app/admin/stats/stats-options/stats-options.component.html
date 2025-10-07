@@ -1,0 +1,24 @@
+<div class="options">
+    <mat-checkbox [checked]="bookingsStore.set_show_future_amsterdamOnly_hidePrivate_hideHidden"
+        (change)="bookingsStore.set_show_future_amsterdamOnly_hidePrivate_hideHidden($event.checked)">
+        <span>only show amsterdam - future - not private - not hidden</span>
+    </mat-checkbox>
+    <!-- <mat-form-field> -->
+
+    <div class="date-picker">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate
+                placeholder="Start date"
+                #startInput>
+            <input matEndDate
+                placeholder="End date"
+                (dateChange)="onEndDateChange(startInput.value, $event.value)">
+        </mat-date-range-input>
+        <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+        <mat-datepicker-toggle matIconSuffix
+            [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </div>
+    <!-- </mat-form-field> -->
+</div>

@@ -1,65 +1,91 @@
-mat-accordion {
-    mat-expansion-panel {
-        // background-color: green !important;
-        background-color: var(--sahara);
-        // color: var(--blue);
-        padding: 0 !important;
-        margin: 0 !important;
+.accordion-wrapper {
+    mat-accordion {
+        // border: 5px solid var(--rust) !important;
+        mat-expansion-panel {
+            // background-color: green !important;
+            background-color: var(--sahara);
+            // color: var(--blue);
+            padding: 0 !important;
+            margin: 0 !important;
 
-        mat-expansion-panel-header {
-            // background-color: var(--blue) !important;
-            // background-color: orange !important;
-            mat-panel-title {
-                font-size: 0.9rem;
-                .editor {
-                    button {
-                        color: white;
+            mat-expansion-panel-header {
+                // background-color: var(--blue) !important;
+                // background-color: orange !important;
+                mat-panel-title {
+                    font-size: 0.9rem;
+                    .editor {
+                        button {
+                            color: white;
+                        }
+                    }
+                    .user {
+                        // color: var(--sahara);
+                        .start {
+                            // width: 6rem;
+                            display: flex;
+                        }
+                        .venue-name {
+                            text-transform: uppercase;
+                        }
                     }
                 }
-                .user {
-                    // color: var(--sahara);
-                    .start {
-                        // width: 6rem;
-                        display: flex;
-                    }
-                    .venue-name {
-                        text-transform: uppercase;
-                    }
-                }
             }
-        }
-        .booking-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 0.2rem;
-            border: 5px solid var(--rust);
-            border-radius: 13px;
-            padding: 0.5rem;
-
-            .private-party {
-                margin: auto;
-                text-transform: uppercase;
-                font-weight: 500;
-                padding: 0.3rem 0.5rem;
-                border-radius: 10px;
-                background-color: var(--rust);
-                color: var(--sahara);
-                width: fit-content;
-            }
-
-            .hours {
-                // border: 1px solid gray;
-                display: flex;
-                gap: 0.5rem;
-            }
-            .staff-members {
+            .booking-info {
                 display: flex;
                 flex-direction: column;
-                gap: 0.2rem;
+                gap: 0.5rem;
+                margin-top: 0.2rem;
+                // border-top: 5px solid var(--rust);
+                border-radius: 13px;
+                // padding: 0.5rem;
+                padding: 1rem;
+                .location {
+                    .address {
+                        display: flex;
+                        gap: 0.5rem;
+                        .venue-street {
+                            text-transform: capitalize;
+                        }
+                    }
+                    .venue-city {
+                        text-transform: capitalize;
+                    }
+                }
+
+                .hours {
+                    background-color: var(--blue);
+                    padding: 0.3rem 0.5rem;
+                    color: var(--sahara);
+                    display: flex;
+                    gap: 0.5rem;
+                }
+                .private-party-notification {
+                    margin: auto;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    padding: 0.3rem 0.5rem;
+                    border-radius: 10px;
+                    background-color: var(--rust);
+                    color: var(--sahara);
+                    width: fit-content;
+                }
+                .staff-members {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.2rem;
+                }
             }
         }
     }
+}
+.accordion-wrapper-active {
+    border: 10px solid var(--rust);
+    border-radius: 20px;
+}
+
+.accordion-wrapper-inactive {
+    // border: 10px solid var(--sahara);
+    border-radius: 20px;
 }
 
 // .no-padding .mat-expansion-panel-header {
@@ -83,23 +109,36 @@ mat-accordion {
     color: var(--sahara) !important;
 }
 
-.expansion-panel-active {
+.expansion-panel-is-odd {
     // border: 3px solid red;
     border-radius: 100px;
 }
-.expansion-panel-header-active {
+.expansion-panel-header-is-odd {
     background-color: var(--sahara) !important;
     color: black;
+    font-size: 2rem;
 }
-.expansion-panel-header-inactive {
+.expansion-panel-header-is-even {
     background-color: var(--blue) !important;
     color: white !important;
 }
-.user-active,
-.venue-name-active {
+.user-is-odd {
+    color: black;
+}
+.venue-name-is-odd {
     color: black !important;
 }
-.user-inactive,
-.venue-name-inactive {
+
+.venue-name-is-even {
     color: var(--sahara) !important;
+}
+.user-is-even {
+    color: var(--sahara);
+}
+
+.panel-open {
+    font-size: 1.4rem;
+}
+.panel-closed {
+    font-size: 1rem;
 }

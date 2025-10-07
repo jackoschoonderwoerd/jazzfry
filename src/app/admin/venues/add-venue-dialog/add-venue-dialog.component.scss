@@ -1,14 +1,25 @@
 .wrapper {
+    background-color: var(--sahara);
     form {
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 320px;
+        max-width: 500px;
         margin: auto;
         .buttons {
             display: flex;
-            flex-direction: column;
+
             gap: 0.5rem;
+            .add-btn {
+                background-color: var(--blue);
+                color: var(--sahara) !important;
+                flex-grow: 1;
+            }
+            .cancel-btn {
+                background-color: var(--rust);
+                color: var(--sahara) !important;
+                flex-grow: 1;
+            }
         }
     }
 }

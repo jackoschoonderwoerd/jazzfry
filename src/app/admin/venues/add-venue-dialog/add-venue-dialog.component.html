@@ -1,6 +1,6 @@
 <div class="wrapper">
     <form [formGroup]="form">
-        <div class="header">{{venueStore.editmode()}}</div>
+        <!-- <div class="header">{{venueStore.editmode()}}</div> -->
         <mat-form-field>
             <mat-label>name</mat-label>
             <input type="text"
@@ -56,14 +56,14 @@
                 formControlName="mapUrl"></textarea>
         </mat-form-field>
         <div class="buttons">
+            <button class="cancel-btn"
+                mat-button
+                routerLink="/admin/venues"
+                (click)="venueStore.selectVenue(null)">cancel</button>
             <button mat-button
-                class="form-button"
+                class="add-btn"
                 (click)="addVenue()"
                 mat-dialog-close>{{venueStore.editmode()? 'update':'add'}} venue</button>
-            <button class="form-button"
-                mat-button
-                mat-dialog-close
-                (click)="venueStore.selectVenue(null)">cancel</button>
         </div>
 
     </form>

@@ -8,17 +8,24 @@ import { FirestoreService } from '../../shared/firestore.service';
 import { PATH_TO_STAFFMEMBERS } from '../../models/constants';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { StaffStore } from './staff-store/staff.store';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-staff',
-    imports: [MatIconModule, MatButtonModule, StaffMemberComponent],
+    imports: [
+        MatIconModule,
+        MatButtonModule,
+        StaffMemberComponent,
+        RouterModule
+    ],
     templateUrl: './staff.component.html',
     styleUrl: './staff.component.scss'
 })
 export class StaffComponent {
 
     dialog = inject(MatDialog);
-    fs = inject(FirestoreService)
+    fs = inject(FirestoreService);
+
 
     // staffMembers: StaffMember[] = [];
     staffStore = inject(StaffStore)

@@ -1,8 +1,11 @@
 .wrapper {
     display: grid;
     gap: 1rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     background-color: var(--sahara);
+    max-width: 900px;
+    margin: auto;
+    border: 3px solid green;
     .apps {
         display: flex;
         flex-direction: column;
@@ -25,6 +28,18 @@
         .buttons {
             display: flex;
             gap: 1rem;
+            .cancel {
+                background-color: var(--rust);
+                color: var(--sahara) !important;
+                text-transform: uppercase;
+                flex-grow: 1;
+            }
+            .book {
+                // background-color: var(--blue);
+                color: var(--sahara) !important;
+                text-transform: uppercase;
+                flex-grow: 1;
+            }
         }
     }
 }

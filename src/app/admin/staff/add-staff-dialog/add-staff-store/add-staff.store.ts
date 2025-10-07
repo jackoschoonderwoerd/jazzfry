@@ -20,7 +20,8 @@ export const AddStaffStore = signalStore(
         const fs = inject(FirestoreService); // ✅ Inject once at the top
         const dialog = inject(MatDialog);
         const confirmService = inject(ConfirmService);
-        const snackbarService = inject(SnackbarService)
+        const snackbarService = inject(SnackbarService);
+        const router = inject(Router)
 
         return {
             updatePersonalia: (personalia: Personalia) => {
@@ -48,6 +49,7 @@ export const AddStaffStore = signalStore(
             },
             cancelSelectedStaffMember() {
                 patchState(store, { staffMember: initialAddStaffSlice.staffMember, editmode: false })
+                router.navigateByUrl('/admin/staff');
             },
             // setActiveStaffMember(staffMember: StaffMember) {
             //     patchState(store, { staffMember })
@@ -60,8 +62,9 @@ export const AddStaffStore = signalStore(
                     fs.addDoc(path, staffMember)
                         .then((res: any) => {
                             console.log(res);
-                            patchState(store, { staffMember: initialAddStaffSlice.staffMember })
-                            snackbarService.openSnackbar('staff member added')
+                            patchState(store, { staffMember: initialAddStaffSlice.staffMember });
+                            router.navigateByUrl('/admin/staff');
+                            snackbarService.openSnackbar('staff member added');
                         })
                         .catch((err: FirestoreError) => {
                             console.error(err);

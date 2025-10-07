@@ -1,0 +1,224 @@
+<div class="wrapper">
+    <div class="top">
+        <app-stats-options></app-stats-options>
+        <button mat-button
+            class="amsterdam-future"
+            (click)="exportExcel()">download jazzfry.xlsx</button>
+    </div>
+    <mat-checkbox (change)="onPrivatePartyChange($event.checked)">show private parties</mat-checkbox>
+
+    <table mat-table
+        class="table"
+        #table
+        id="table-data"
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="date"
+        matSortDirection="asc">
+
+        <ng-container matColumnDef="edit">
+            <th class="edit"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>
+
+                edit
+            </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                <button mat-icon-button
+                    (click)="onEdit(dataSource)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th class="delete"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>
+                del.
+            </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                <button mat-icon-button
+                    (click)="onEdit(dataSource.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+            </td>
+        </ng-container>
+
+
+        <!-- <ng-container matColumnDef="id">
+            <th class="id"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>id </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{dataSource.id}}
+            </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="date">
+            <th class="date"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>date </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{dataSource.date.seconds*1000|date}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="start">
+            <th class="start"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>start </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{dataSource.start}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="end">
+            <th class="end"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>end </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{dataSource.end}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="venueName">
+            <th class="venueName"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>venueName </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{venuesStore.getVenueNameById(dataSource.venue)}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+            <th class="city"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>city </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{venuesStore.getVenueCityById(dataSource.venue)}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="staffMembers">
+            <th class="staffMembers"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>staff </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title> staff </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+
+                        @for(id of dataSource.staffMemberIds; track $index) {
+                        <app-staff-member [id]="id"></app-staff-member>
+                        <!-- {{id}} -->
+                        }
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="private">
+            <th class="private"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>private </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{dataSource.privateParty}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hidden">
+            <th class="hidden"
+                mat-header-cell
+                mat-sort-header
+                *matHeaderCellDef>hidden </th>
+            <td mat-cell
+                *matCellDef="let dataSource">
+                {{dataSource.hidden}}
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row
+            *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row
+            *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+    <!-- <mat-table id="table-data"
+        [dataSource]="dataSource">
+
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+            <mat-cell *matCellDef="let booking">{{ booking.id }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+            <mat-cell *matCellDef="let booking"> {{ booking.date.seconds*1000|date }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="starts">
+            <mat-header-cell *matHeaderCellDef>dataSource </mat-header-cell>
+            <mat-cell *matCellDef="let booking"> {{ booking.start }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ends">
+            <mat-header-cell *matHeaderCellDef>Ends </mat-header-cell>
+            <mat-cell *matCellDef="let booking"> {{ booking.end }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="venueName">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let booking"> {{ venuesStore.getVenueNameById(booking.venue) }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="venueCity">
+            <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+            <mat-cell *matCellDef="let booking"> {{ venuesStore.getVenueCityById(booking.venue) }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="private">
+            <mat-header-cell *matHeaderCellDef>Private </mat-header-cell>
+            <mat-cell *matCellDef="let booking"> {{ booking.privateParty }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="hidden">
+            <mat-header-cell *matHeaderCellDef> Hidden</mat-header-cell>
+            <mat-cell *matCellDef="let booking"> {{ booking.hidden }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table> -->
+
+</div>

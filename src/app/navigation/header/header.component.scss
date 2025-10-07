@@ -10,6 +10,7 @@ mat-toolbar {
             // border: 1px solid white;
             display: flex;
             gap: 0.5rem;
+            text-transform: uppercase;
             button {
                 background-color: var(--sahara);
             }

@@ -4,6 +4,7 @@ import { Venue } from "../../../models/venue.model";
 export interface VenueSlice {
     venues: Venue[];
     selectedVenue: Venue;
+    upcomingVenue: Venue;
 
     // readonly staffMember: StaffMember;
     // readonly editmode: boolean;
@@ -12,6 +13,7 @@ export interface VenueSlice {
 export const initialVenueSlice: VenueSlice = {
     venues: [],
     selectedVenue: null,
+    upcomingVenue: null
 
 
     // staffMember: {

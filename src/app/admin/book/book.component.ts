@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { StaffMemberComponent } from '../staff/staff-member/staff-member.component';
 import { PrivatePartyPickerComponent } from './private-party-picker/private-party-picker.component';
+import { DatePipe } from '@angular/common';
+import { VisibleToUserPickerComponent } from './visible-to-user-picker/visible-to-user-picker.component';
 
 
 
@@ -20,9 +22,11 @@ import { PrivatePartyPickerComponent } from './private-party-picker/private-part
         TimePickerComponent,
         VenuePickerComponent,
         StaffPickerComponent,
+        VisibleToUserPickerComponent,
         PrivatePartyPickerComponent,
         MatButtonModule,
         StaffMemberComponent,
+        DatePipe
     ],
     templateUrl: './book.component.html',
     styleUrl: './book.component.scss'

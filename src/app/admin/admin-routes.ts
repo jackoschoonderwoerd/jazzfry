@@ -24,6 +24,27 @@ export const adminRoutes: Routes = [
         path: 'visits',
         loadComponent: () => import('./visits/visits.component')
             .then(c => c.VisitsComponent)
+    },
+    {
+        path: 'all-bookings',
+        loadComponent: () => import('./all-bookings/all-bookings.component')
+            .then(c => c.AllBookingsComponent)
+    },
+    {
+        path: 'add-staff',
+        loadComponent: () => import('./staff/add-staff-dialog/add-staff-dialog.component')
+            .then(c => c.AddStaffDialogComponent)
+    },
+    {
+        path: 'stats',
+        loadComponent: () => import('./stats/stats.component')
+            .then(c => c.StatsComponent)
+
+    },
+    {
+        path: 'add-venue',
+        loadComponent: () => import('./venues/add-venue-dialog/add-venue-dialog.component')
+            .then(c => c.AddVenueDialogComponent)
     }
 
 ];

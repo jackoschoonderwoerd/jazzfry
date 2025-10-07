@@ -1,4 +1,4 @@
-import { Component, inject, input, InputSignal } from '@angular/core';
+import { Component, inject, input, InputSignal, signal } from '@angular/core';
 import { Venue } from '../../../../models/venue.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,8 +21,11 @@ import { WebsiteDialogComponent } from './website-dialog/website-dialog.componen
 })
 export class UserVenueComponent {
 
+
     venue: InputSignal<Venue> = input<Venue>();
     dialog = inject(MatDialog)
+    privateBooking: InputSignal<boolean> = input<boolean>();
+    showName: InputSignal<boolean> = input<boolean>();
 
 
 

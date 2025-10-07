@@ -8,7 +8,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
     selector: 'app-website-dialog',
-    imports: [MatIconModule, MatButtonModule, MatDialogModule, MatProgressSpinnerModule],
+    imports: [
+        MatIconModule, MatButtonModule, MatDialogModule, MatProgressSpinnerModule],
     templateUrl: './website-dialog.component.html',
     styleUrl: './website-dialog.component.scss'
 })

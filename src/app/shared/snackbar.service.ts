@@ -10,7 +10,7 @@ export class SnackbarService {
     constructor() { }
 
     openSnackbar(message: string) {
-        this.snackbar.open(message)
+        this.snackbar.open(message, 'close')
     }
 
 }
