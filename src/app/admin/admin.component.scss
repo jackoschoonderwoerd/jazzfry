@@ -1,0 +1,14 @@
+.layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* header, then content */
+    height: 100%;
+    /* Header row */
+    .header-container {
+        margin-bottom: 0.3rem;
+    }
+
+    /* Content row, scrollable */
+    .outlet-wrapper {
+        overflow-y: auto;
+    }
+}

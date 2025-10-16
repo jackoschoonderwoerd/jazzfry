@@ -1,24 +1,36 @@
-<div class="options">
-    <mat-checkbox [checked]="bookingsStore.set_show_future_amsterdamOnly_hidePrivate_hideHidden"
+<div class="filters">
+    <div class="header">filters</div>
+    <mat-checkbox [ngClass]="bookingsStore.onlyAmsterdamFutureFilterActive() ? 'filter-active': ''"
+        [checked]="bookingsStore.onlyAmsterdamFutureFilterActive()"
         (change)="bookingsStore.set_show_future_amsterdamOnly_hidePrivate_hideHidden($event.checked)">
-        <span>only show amsterdam - future - not private - not hidden</span>
+        jazzin.amsterdam
     </mat-checkbox>
     <!-- <mat-form-field> -->
 
-    <div class="date-picker">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate
-                placeholder="Start date"
-                #startInput>
-            <input matEndDate
-                placeholder="End date"
-                (dateChange)="onEndDateChange(startInput.value, $event.value)">
-        </mat-date-range-input>
-        <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-        <mat-datepicker-toggle matIconSuffix
-            [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
+    <div class="date-picker"
+        [ngClass]="bookingsStore.dateFilterActive() ? 'filter-active': ''">
+        <mat-form-field>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate
+                    placeholder="Start date"
+                    #startInput>
+                <input matEndDate
+                    placeholder="End date"
+                    (dateChange)="onEndDateChange(startInput.value, $event.value)">
+            </mat-date-range-input>
+            <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matIconSuffix
+                [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
     </div>
+
+    <mat-checkbox [ngClass]="bookingsStore.showAll() ? 'filter-active': ''"
+        [checked]="bookingsStore.showAll()"
+        (change)="bookingsStore.set_filter_to_null($event.checked)">
+        show all
+    </mat-checkbox>
+
     <!-- </mat-form-field> -->
 </div>

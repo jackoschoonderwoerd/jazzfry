@@ -42,7 +42,6 @@ export const AuthStore = signalStore(
         (store, fs = inject(FirestoreService), auth = inject(Auth), router = inject(Router)) => ({
             async login(jfUser: JFUser) {
                 if (jfUser) {
-                    console.log(jfUser);
                     signInWithEmailAndPassword(auth, jfUser.email, jfUser.password)
                         .then((userCredential: UserCredential) => {
                             patchState(store, { isLoggedIn: true });

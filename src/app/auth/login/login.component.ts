@@ -35,9 +35,6 @@ export class LoginComponent {
             password: new FormControl(null, [Validators.required])
         })
     }
-    onSubmit() {
-        console.log(this.form.value)
-    }
     onCancel() {
         this.router.navigateByUrl('agenda')
     }

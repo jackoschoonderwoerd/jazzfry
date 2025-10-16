@@ -8,6 +8,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from '../environments/environment.prod';
 import { provideServiceWorker } from '@angular/service-worker';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -21,6 +22,11 @@ export const appConfig: ApplicationConfig = {
             registrationStrategy: 'registerWhenStable:30000'
         }),
         provideServiceWorker('ngsw-worker.js', {
+            // enabled: !isDevMode(),
+            enabled: environment.production,
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        provideHttpClient(withInterceptorsFromDi()), provideServiceWorker('ngsw-worker.js', {
             enabled: !isDevMode(),
             registrationStrategy: 'registerWhenStable:30000'
         })

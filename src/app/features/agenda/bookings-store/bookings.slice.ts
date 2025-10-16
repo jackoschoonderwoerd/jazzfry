@@ -9,27 +9,35 @@ export interface MyDateRange {
 
 export interface BookingsSlice {
     all: Booking[];
-    future_hideHidden: Booking[];
-    future_amsterdamOnly_hidePrivate_hideHidden: Booking[];
-    show_future_amsterdamOnly_hidePrivate_hideHidden: boolean;
+    filtered: Booking[];
+    // future_hideHidden: Booking[];
+    // future_amsterdamOnly_hidePrivate_hideHidden: Booking[];
+    // show_future_amsterdamOnly_hidePrivate_hideHidden: boolean;
     bookingsWithinDateRange: Booking[]
-
-
     indexSelectedBooking: number;
     showingAll: boolean;
-    first: Booking
+    // first: Booking;
+
+    dateFilterActive: boolean;
+    onlyAmsterdamFutureFilterActive: boolean;
+    showAll: boolean;
 
 
 }
 
 export const initialBookingsSlice: BookingsSlice = {
     all: [],
-    future_hideHidden: [],
-    future_amsterdamOnly_hidePrivate_hideHidden: [],
-    show_future_amsterdamOnly_hidePrivate_hideHidden: true,
+    filtered: [],
+    // future_hideHidden: [],
+    // future_amsterdamOnly_hidePrivate_hideHidden: [],
+    // show_future_amsterdamOnly_hidePrivate_hideHidden: true,
     bookingsWithinDateRange: [],
 
     indexSelectedBooking: null,
     showingAll: false,
-    first: null
+    // first: null,
+
+    dateFilterActive: false,
+    onlyAmsterdamFutureFilterActive: false,
+    showAll: true
 }

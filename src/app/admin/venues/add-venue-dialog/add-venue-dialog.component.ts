@@ -38,8 +38,9 @@ export class AddVenueDialogComponent {
             phone: new FormControl(''),
             contact: new FormControl(''),
             mapUrl: new FormControl(''),
-            website: new FormControl('')
-
+            website: new FormControl(''),
+            instagram: new FormControl(''),
+            facebook: new FormControl('')
         })
         effect(() => {
             this.form.patchValue(this.selectedVenue())

@@ -17,8 +17,10 @@ import { PATH_TO_BOOKINGS } from '../../../models/constants';
 import { Booking } from '../../../models/booking.model';
 
 import { initialBookingsSlice, MyDateRange } from './bookings.slice';
-import { getFirst, getFuture_hideHidden, setBookingsWithinDateRange } from './booking-vm.builders';
+import { get_Future_amsterdamOnly_hidePrivate_hideHidden, getFirst, getFuture_hideHidden, setBookingsWithinDateRange } from './booking-vm.builders';
 import { VenuesStore } from '../../../admin/venues/venue-store/venue.store';
+import { DateRange } from '@angular/material/datepicker';
+
 
 
 export const BookingsStore = signalStore(
@@ -36,20 +38,81 @@ export const BookingsStore = signalStore(
             getAllBookings: () => {
                 fs.sortedCollection(PATH_TO_BOOKINGS, 'date', 'asc')
                     .subscribe((bookings: Booking[]) => {
-                        patchState(store, { all: bookings, showingAll: true });
+                        patchState(store, { all: bookings, showingAll: true, filtered: bookings });
                     });
             },
-
             setIndexSelectedBooking(indexSelectedBooking: number) {
                 patchState(store, { indexSelectedBooking });
             },
 
             set_show_future_amsterdamOnly_hidePrivate_hideHidden(checked: boolean) {
-                patchState(store, { show_future_amsterdamOnly_hidePrivate_hideHidden: checked });
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+                yesterday.setHours(0, 0, 0, 0);
+
+                const futureBookings: Booking[] = store.all().filter((booking: Booking) => {
+                    return new Date(booking.date.seconds * 1000) > yesterday
+                })
+
+                const inAmsterdam: Booking[] = futureBookings.filter((futureBooking: Booking) => {
+                    const id = (futureBooking.venue).toString()
+                    const lcCityName = (venuesStore.getVenueCityById(id)).toLowerCase().trim();
+
+                    return lcCityName === 'amsterdam' &&
+                        !futureBooking.privateParty &&
+                        !futureBooking.hidden;
+                })
+
+
+                patchState(store, {
+                    filtered: inAmsterdam,
+                    dateFilterActive: false,
+                    onlyAmsterdamFutureFilterActive: true,
+                    showAll: false
+                })
             },
+
             setDateRange(myDateRange: MyDateRange) {
-                patchState(store, { bookingsWithinDateRange: setBookingsWithinDateRange(myDateRange) })
+                patchState(store, {
+                    filtered: setBookingsWithinDateRange(store.all(), myDateRange),
+                    dateFilterActive: true,
+                    onlyAmsterdamFutureFilterActive: false,
+                    showAll: false
+                })
+            },
+            set_future_amsterdamOnly_hidePrivate_hideHidden() {
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+                yesterday.setHours(0, 0, 0, 0);
+                patchState(store, {
+                    filtered: get_Future_amsterdamOnly_hidePrivate_hideHidden(store.all(), yesterday, venuesStore),
+
+                    dateFilterActive: false,
+                    onlyAmsterdamFutureFilterActive: true,
+                    showAll: false
+                })
+            },
+            set_filter_to_null(checked: boolean) {
+                console.log(checked)
+                if (checked) {
+                    patchState(store, {
+                        filtered: store.all(),
+                        dateFilterActive: false,
+                        onlyAmsterdamFutureFilterActive: false,
+                        showAll: true
+                    })
+                } else {
+                    patchState(store, {
+                        filtered: [],
+                        dateFilterActive: false,
+                        onlyAmsterdamFutureFilterActive: false,
+                        showAll: false
+                    })
+                }
             }
+
         };
     }),
 
@@ -58,12 +121,10 @@ export const BookingsStore = signalStore(
 
         return {
             first: computed(() => {
-                console.log('first');
                 return getFirst(store.all());
             }),
 
             future_hideHidden: computed(() => {
-                console.log('future_hideHidden');
                 const today = new Date();
                 const yesterday = new Date(today);
                 yesterday.setDate(today.getDate() - 1);
@@ -89,6 +150,7 @@ export const BookingsStore = signalStore(
                 );
                 return isInAmsterdam;
             }),
+
 
 
 

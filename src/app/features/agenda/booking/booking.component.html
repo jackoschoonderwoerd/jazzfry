@@ -13,7 +13,8 @@
             [expanded]="index === bookingsStore.indexSelectedBooking()"
             class="no-body-padding"
             (click)="setIndex(index)">
-            <mat-expansion-panel-header [ngClass]="getIsMonthOdd() ? 'expansion-panel-header-is-odd' : 'expansion-panel-header-is-even'">
+            <mat-expansion-panel-header [ngClass]="getIsMonthOdd() ? 'expansion-panel-header-is-odd' : 'expansion-panel-header-is-even'"
+                [ngStyle]="{'border': panelOpen() ? '3px solid transparent' : '3px solid var(--rust)'}">
                 <mat-panel-title>
 
                     @if(authStore.isLoggedIn()){
@@ -59,15 +60,17 @@
                     @if(uiStore.activeLanguage()==='en') {
                     <span>from</span>
                     }
-                    <div class="start">{{booking?.start}}</div>
+                    <!-- <div class="start">{{booking?.start}}</div> -->
+                    <app-hour [hour]="booking?.start"></app-hour>
                     @if(uiStore.activeLanguage()==='nl') {
                     <span>tot</span>
                     }
                     @if(uiStore.activeLanguage()==='en') {
                     <span>until</span>
                     }
+                    <app-hour [hour]="booking?.end"></app-hour>
+                    <!-- <div class="end">{{booking?.end}}</div> -->
 
-                    <div class="end">{{booking?.end}}</div>
                 </div>
                 }
 

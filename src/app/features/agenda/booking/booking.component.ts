@@ -1,6 +1,6 @@
-import { Component, inject, input, Input, signal, Signal } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { Booking } from '../../../models/booking.model';
-import { DatePipe, JsonPipe, NgClass, NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 
@@ -14,11 +14,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { BookingsStore } from '../bookings-store/bookings.store';
 import { AuthStore } from '../../../auth/auth.store';
 import { VenuesStore } from '../../../admin/venues/venue-store/venue.store';
-import { MapDialogComponent } from './user-venue/map-dialog/map-dialog.component';
+
 import { StaffStore } from '../../../admin/staff/staff-store/staff.store';
-import { MyDatePipe } from '../../../shared/pipes/my-date.pipe';
+
 import { UiStore } from '../../../shared/ui-store/ui.store';
 import { DateComponent } from '../../../shared/date/date.component';
+import { HourComponent } from '../../../shared/hour/hour.component';
 
 
 
@@ -33,6 +34,8 @@ import { DateComponent } from '../../../shared/date/date.component';
         UserStaffMemberComponent,
         NgClass,
         NgStyle,
+        HourComponent
+
     ],
     templateUrl: './booking.component.html',
     styleUrl: './booking.component.scss'

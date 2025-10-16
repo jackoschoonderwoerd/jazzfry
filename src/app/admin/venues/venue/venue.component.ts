@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input, Input, InputSignal } from '@angular/core';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddVenueDialogComponent } from '../add-venue-dialog/add-venue-dialog.component';
 import { VenuesStore } from '../venue-store/venue.store';
 import { Venue } from '../../../models/venue.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-venue',
@@ -17,12 +18,18 @@ import { Venue } from '../../../models/venue.model';
 export class VenueComponent {
 
     dialog = inject(MatDialog)
-    venueStore = inject(VenuesStore)
-    @Input() venue: Venue
+    venueStore = inject(VenuesStore);
+
+    venue: InputSignal<Venue> = input<Venue>()
+    // @Input() venue: Venue
+
+
+
 
     onEdit() {
         console.log(this.venue)
-        this.venueStore.selectVenue(this.venue)
+        this.venueStore.selectVenue(this.venue())
         this.dialog.open(AddVenueDialogComponent)
     }
+
 }

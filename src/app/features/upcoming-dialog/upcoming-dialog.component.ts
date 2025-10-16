@@ -24,7 +24,7 @@ import { JsonPipe } from '@angular/common';
         DateComponent,
         FlagsComponent,
         HourComponent,
-        JsonPipe,
+        // JsonPipe,
         UserVenueComponent
     ],
     templateUrl: './upcoming-dialog.component.html',

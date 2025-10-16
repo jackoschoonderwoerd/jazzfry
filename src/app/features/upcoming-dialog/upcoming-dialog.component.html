@@ -14,7 +14,8 @@
                 <app-date [seconds]="booking?.date.seconds"></app-date>
             </div>
             <div class="app-venue-wrapper">
-                <app-user-venue [venue]="venue"></app-user-venue>
+                <app-user-venue [showName]="true"
+                    [venue]="venue"></app-user-venue>
             </div>
             <div class="hours">
                 @if(uiStore.activeLanguage()==='nl'){
@@ -23,7 +24,7 @@
                 @if(uiStore.activeLanguage()==='en'){
                 <span>from&nbsp;</span>
                 }
-                <app-hour [hour]="booking?.start"></app-hour>
+                <app-hour [hour]="booking?.start"></app-hour>&nbsp;
 
 
                 @if(uiStore.activeLanguage()==='nl'){

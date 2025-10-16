@@ -2,8 +2,8 @@
     background-color: var(--sahara);
     // display: grid;
     // grid-template-columns: 3fr 1fr;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 300px;
     gap: 1rem;
     .top {
         display: flex;

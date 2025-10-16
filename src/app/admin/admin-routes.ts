@@ -26,11 +26,6 @@ export const adminRoutes: Routes = [
             .then(c => c.VisitsComponent)
     },
     {
-        path: 'all-bookings',
-        loadComponent: () => import('./all-bookings/all-bookings.component')
-            .then(c => c.AllBookingsComponent)
-    },
-    {
         path: 'add-staff',
         loadComponent: () => import('./staff/add-staff-dialog/add-staff-dialog.component')
             .then(c => c.AddStaffDialogComponent)

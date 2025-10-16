@@ -1,18 +1,20 @@
-.options {
+.filters {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
     padding-right: 1rem;
     // background-color: var(--blue);
     mat-checkbox {
-        border: 2px solid var(--blue);
-        span {
-            font-size: 1rem;
-            font-weight: bold;
-            // color: var(--blue) !important;
-        }
+        border: 3px solid var(--blue);
     }
     .date-picker {
         display: flex;
-        border: 2px solid var(--blue);
+        border: 3px solid var(--blue);
+        mat-form-field {
+            width: 100%;
+        }
+    }
+    .filter-active {
+        border: 3px solid red;
     }
 }

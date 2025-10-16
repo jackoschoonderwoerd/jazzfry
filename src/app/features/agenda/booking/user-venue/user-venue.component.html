@@ -1,5 +1,40 @@
 <div class="venue">
+    <div class="name_media">
+        <div class="name_website">
+            @if(showName()){
+            <div class="name">{{venue()?.name}}</div>
+            } @else {
+            <div class="website">media:</div>
 
+            }
+            <div class="links">
+                @if(venue()?.instagram){
+                <a class="instagram"
+                    [href]="venue().instagram"
+                    target="_blank"><img src="logos/Instagram_logo_2022.svg.png"
+                        alt="">
+                </a>
+                }
+                @if(venue()?.facebook){
+                <a class="facebook"
+                    [href]="venue().facebook"
+                    target="_blank"><img src="logos/facebook-logo-2428(1).svg"
+                        alt="">
+                </a>
+                }
+                @if(frameStatus()) {
+                <button class="link-btn"
+                    mat-icon-button
+                    (click)="openWebsiteDialog()">
+                    <mat-icon>home</mat-icon>
+                </button>
+                }
+                <!-- @if(authStore.isLoggedIn()) {
+                <p>frameStatus: {{frameStatus()}}</p>
+                } -->
+            </div>
+        </div>
+    </div>
     <div class="address_place">
         <div class="address">
             <div class="street_number">
@@ -16,21 +51,17 @@
         </button>
         }
     </div>
-    <div class="name_website_link">
-        <div class="name_website">
-            @if(showName()){
-            <div class="name">{{venue()?.name}}</div>
-            } @else {
-            <div class="website">website:</div>
-            }
-            <button class="link-btn"
-                mat-icon-button
-                (click)="openWebsiteDialog()">
-                <mat-icon>link</mat-icon>
-            </button>
-        </div>
-    </div>
 
+    <div>
+        @if(authStore.isLoggedIn()) {
+
+        <button (click)="checkWebsiteAccessibility()">Check Website</button>
+
+
+        <p>frameStatus: {{ frameStatus() }}</p>
+        }
+
+    </div>
 
 
 </div>

@@ -58,7 +58,7 @@ export class StatsComponent {
 
     constructor() {
         effect(() => {
-            if (this.bookingsStore.show_future_amsterdamOnly_hidePrivate_hideHidden()) {
+            if (this.bookingsStore.showAll()) {
                 this.dataSource = this.bookingsStore.future_amsterdamOnly_hidePrivate_hideHidden();
             } else {
                 this.dataSource = this.bookingsStore.all();
@@ -101,20 +101,4 @@ export class StatsComponent {
         }
     }
 
-    applyPrivatePartyFilter() {
-        // this.dataSource.filterPredicate = (booking: Booking) => {
-        //     this.dataSource = this.dataSource.filter(this.dataSource) booking.privateParty
-        // const date = new Date(data.date);
-        // const start = this.startDate ? new Date(this.startDate) : null;
-        // const end = this.endDate ? new Date(this.endDate) : null;
-
-        // if (start && end) return date >= start && date <= end;
-        // if (start) return date >= start;
-        // if (end) return date <= end;
-        // return true;
-    };
-
-    // Trigger filter refresh (any non-empty value works)
-    // this.dataSource.filter = Math.random().toString();
-    // }
 }

@@ -11,4 +11,6 @@ export interface Venue {
     contact: string;
     mapUrl?: string;
     website?: string;
+    instagram?: string;
+    facebook?: string
 }
