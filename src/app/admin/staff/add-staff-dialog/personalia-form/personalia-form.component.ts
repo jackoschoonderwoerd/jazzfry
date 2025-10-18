@@ -6,6 +6,7 @@ import { Personalia, StaffMember } from '../../../../models/staff-member';
 import { AddStaffStore } from '../add-staff-store/add-staff.store';
 import { JsonPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { normalizeFormValues } from '../../../../shared/helper-functions/normalize_formvalues';
 
 @Component({
     selector: 'app-personalia-form',
@@ -42,7 +43,7 @@ export class PersonaliaFormComponent {
 
     }
     onSubmit() {
-        const formValue = this.form.value
+        const formValue = normalizeFormValues(this.form.value)
         const personalia: Personalia = {
             firstName: formValue.firstName,
             particles: formValue.particles,

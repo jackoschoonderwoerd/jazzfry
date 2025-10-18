@@ -1,15 +1,15 @@
 export interface Personalia {
-    firstName: string;
-    particles?: string;
-    lastName: string;
+    readonly firstName: string;
+    readonly particles?: string;
+    readonly lastName: string;
 }
 
 export interface StaffMember {
-    id?: string;
-    personalia: Personalia;
-    instruments: string[];
-    biography?: string;
-    imgPath?: string
+    readonly id?: string;
+    readonly personalia: Personalia;
+    readonly instruments: string[];
+    readonly biography?: string;
+    readonly imgPath?: string
 }
 
 

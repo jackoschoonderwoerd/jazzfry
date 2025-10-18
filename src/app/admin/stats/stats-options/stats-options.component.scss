@@ -9,12 +9,31 @@
     }
     .date-picker {
         display: flex;
-        border: 3px solid var(--blue);
+        // border: 3px solid var(--blue);
         mat-form-field {
             width: 100%;
         }
     }
     .filter-active {
         border: 3px solid red;
+    }
+    .filter-passive {
+        border: 3px solid blue;
+    }
+
+    .radio-group-wrapper {
+        mat-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            mat-radio-button {
+                padding: 0.2rem;
+            }
+        }
+        .currently-active {
+            span {
+                font-weight: bold;
+            }
+        }
     }
 }

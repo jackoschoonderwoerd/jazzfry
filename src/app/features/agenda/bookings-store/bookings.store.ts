@@ -45,7 +45,7 @@ export const BookingsStore = signalStore(
                 patchState(store, { indexSelectedBooking });
             },
 
-            set_show_future_amsterdamOnly_hidePrivate_hideHidden(checked: boolean) {
+            set_show_future_amsterdamOnly_hidePrivate_hideHidden() {
                 const today = new Date();
                 const yesterday = new Date(today);
                 yesterday.setDate(today.getDate() - 1);
@@ -64,12 +64,11 @@ export const BookingsStore = signalStore(
                         !futureBooking.hidden;
                 })
 
-
                 patchState(store, {
                     filtered: inAmsterdam,
                     dateFilterActive: false,
                     onlyAmsterdamFutureFilterActive: true,
-                    showAll: false
+                    showAllActive: false
                 })
             },
 
@@ -78,39 +77,16 @@ export const BookingsStore = signalStore(
                     filtered: setBookingsWithinDateRange(store.all(), myDateRange),
                     dateFilterActive: true,
                     onlyAmsterdamFutureFilterActive: false,
-                    showAll: false
+                    showAllActive: false
                 })
             },
-            set_future_amsterdamOnly_hidePrivate_hideHidden() {
-                const today = new Date();
-                const yesterday = new Date(today);
-                yesterday.setDate(today.getDate() - 1);
-                yesterday.setHours(0, 0, 0, 0);
+            set_filter_to_null() {
                 patchState(store, {
-                    filtered: get_Future_amsterdamOnly_hidePrivate_hideHidden(store.all(), yesterday, venuesStore),
-
+                    filtered: store.all(),
                     dateFilterActive: false,
-                    onlyAmsterdamFutureFilterActive: true,
-                    showAll: false
+                    onlyAmsterdamFutureFilterActive: false,
+                    showAllActive: true
                 })
-            },
-            set_filter_to_null(checked: boolean) {
-                console.log(checked)
-                if (checked) {
-                    patchState(store, {
-                        filtered: store.all(),
-                        dateFilterActive: false,
-                        onlyAmsterdamFutureFilterActive: false,
-                        showAll: true
-                    })
-                } else {
-                    patchState(store, {
-                        filtered: [],
-                        dateFilterActive: false,
-                        onlyAmsterdamFutureFilterActive: false,
-                        showAll: false
-                    })
-                }
             }
 
         };

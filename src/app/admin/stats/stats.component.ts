@@ -58,7 +58,7 @@ export class StatsComponent {
 
     constructor() {
         effect(() => {
-            if (this.bookingsStore.showAll()) {
+            if (this.bookingsStore.showAllActive()) {
                 this.dataSource = this.bookingsStore.future_amsterdamOnly_hidePrivate_hideHidden();
             } else {
                 this.dataSource = this.bookingsStore.all();

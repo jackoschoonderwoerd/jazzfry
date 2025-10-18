@@ -1,14 +1,14 @@
 <div class="filters">
     <div class="header">filters</div>
-    <mat-checkbox [ngClass]="bookingsStore.onlyAmsterdamFutureFilterActive() ? 'filter-active': ''"
+    <!-- <mat-checkbox [ngClass]="bookingsStore.onlyAmsterdamFutureFilterActive() ? 'filter-active': ''"
         [checked]="bookingsStore.onlyAmsterdamFutureFilterActive()"
-        (change)="bookingsStore.set_show_future_amsterdamOnly_hidePrivate_hideHidden($event.checked)">
+        (change)="bookingsStore.set_show_future_amsterdamOnly_hidePrivate_hideHidden()">
         jazzin.amsterdam
-    </mat-checkbox>
+    </mat-checkbox> -->
     <!-- <mat-form-field> -->
 
     <div class="date-picker"
-        [ngClass]="bookingsStore.dateFilterActive() ? 'filter-active': ''">
+        [ngClass]="bookingsStore.dateFilterActive() ? 'filter-active': 'filter-passive'">
         <mat-form-field>
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [rangePicker]="picker">
@@ -26,11 +26,30 @@
         </mat-form-field>
     </div>
 
-    <mat-checkbox [ngClass]="bookingsStore.showAll() ? 'filter-active': ''"
-        [checked]="bookingsStore.showAll()"
-        (change)="bookingsStore.set_filter_to_null($event.checked)">
+    <!-- <mat-checkbox [ngClass]="bookingsStore.showAllActive() ? 'filter-active': ''"
+        [checked]="bookingsStore.showAllActive()"
+        (change)="bookingsStore.set_filter_to_null()">
         show all
-    </mat-checkbox>
+    </mat-checkbox> -->
 
-    <!-- </mat-form-field> -->
+    <div class="radio-group-wrapper">
+
+        <mat-radio-group aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            [(ngModel)]="selectedView">
+
+            <mat-radio-button class="example-radio-button"
+                [ngClass]="bookingsStore.showAllActive() ? 'filter-active': 'filter-passive'"
+                [checked]="true"
+                (change)="bookingsStore.set_filter_to_null()"
+                value="showAll">show all</mat-radio-button>
+            <mat-radio-button class="example-radio-button"
+                [ngClass]="bookingsStore.onlyAmsterdamFutureFilterActive() ? 'filter-active': 'filter-passive'"
+                (change)="bookingsStore.set_show_future_amsterdamOnly_hidePrivate_hideHidden()"
+                value="jazzInAmsterdam">jazz in amsterdam</mat-radio-button>
+
+
+        </mat-radio-group>
+    </div>
+
 </div>

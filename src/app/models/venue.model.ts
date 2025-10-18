@@ -1,16 +1,16 @@
 
 
 export interface Venue {
-    id?: string;
-    name: string;
-    street: string;
-    number: number;
-    city: string;
-    country: string;
-    phone: number;
-    contact: string;
-    mapUrl?: string;
-    website?: string;
-    instagram?: string;
-    facebook?: string
+    readonly id?: string;
+    readonly name: string;
+    readonly street: string;
+    readonly number: number;
+    readonly city: string;
+    readonly country: string;
+    readonly phone: number;
+    readonly contact: string;
+    readonly mapUrl?: string;
+    readonly website?: string;
+    readonly instagram?: string;
+    readonly facebook?: string
 }

@@ -2,12 +2,12 @@ import { StaffMember } from "./staff-member";
 import { Venue } from "./venue.model";
 
 export interface Booking {
-    id?: string;
-    date: any;
-    start: string;
-    end: string;
-    venue: Venue;
-    staffMemberIds: string[];
-    privateParty?: boolean;
-    hidden: boolean;
+    readonly id?: string;
+    readonly date: any;
+    readonly start: string;
+    readonly end: string;
+    readonly venue: Venue;
+    readonly staffMemberIds: string[];
+    readonly privateParty?: boolean;
+    readonly hidden: boolean;
 }
