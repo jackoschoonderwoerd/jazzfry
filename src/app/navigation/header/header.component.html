@@ -1,18 +1,46 @@
 <mat-toolbar>
     <div class="header-left">
-        <div class="buttons">
-            <button mat-icon-button
-                routerLink="home"
-                routerLinkActive="link-active">
-                <mat-icon>home</mat-icon>
-            </button>
+
+
+        <mat-icon (click)="uiStore.setSidenav(true)">menu</mat-icon>
+
+        <div class="user-approved-menu">
+            @for(menuItem of uiStore.menuItems() ; track $index) {
             <button mat-button
-                routerLink="agenda"
-                routerLinkActive="link-active">agenda</button>
-            <button mat-button
-                routerLink="contact"
-                routerLinkActive="link-active">contact</button>
+                routerLinkActive="link-active"
+                [routerLink]="menuItem.link">{{uiStore.activeLanguage() === 'nl' ? menuItem.appearanceNl : menuItem.appearanceEn}}</button>
+            }
         </div>
+
+        @if(authStore.isLoggedIn()){
+        <div class="admin-approved-menu">
+            @for(menuItem of uiStore.adminMenuItems(); track $index){
+            <button mat-button
+                routerLinkActive="admin-link-active"
+                [routerLink]="menuItem.link">
+                {{uiStore.activeLanguage() === 'nl' ? menuItem.appearanceNl : menuItem.appearanceEn}}</button>
+            }
+
+            <button mat-button
+                routerLinkActive="link-active"
+                routerLink="photo-viewer">foto's</button>
+
+            <button mat-button
+                (click)="cameraInput.click()">camera
+
+                <!-- <mat-icon class="photo-camera-icon">photo_camera</mat-icon> -->
+            </button>
+            <input #cameraInput
+                type="file"
+                accept="image/*"
+                capture="environment"
+                hidden
+                (change)="onCameraFileSelected($event)" />
+
+        </div>
+
+
+        }
 
 
 
@@ -21,24 +49,5 @@
         <div class="app-flags-container">
             <app-flags></app-flags>
         </div>
-        <!-- @if(authStore.isLoggedIn()){
-
-        <button mat-button
-            routerLink="admin"
-            routerLinkActive="link-active">admin</button>
-        }
-
-        @if(!authStore.isLoggedIn()){
-        <button mat-icon-button
-            routerLink="login">
-            <mat-icon>login</mat-icon>
-        </button>
-        } @else {
-        <button mat-icon-button
-            (click)="authStore.logout()">
-            <mat-icon>logout</mat-icon>
-        </button>
-
-        } -->
     </div>
 </mat-toolbar>

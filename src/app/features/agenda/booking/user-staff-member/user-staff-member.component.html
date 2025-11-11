@@ -1,16 +1,36 @@
 <div class="staff-member">
 
-    <div class="staff-member-info">
+    <div class="staff-member-info"
+        [ngClass]="{
+                'called-from-app-component': calledFrom() === 'app-component',
+                'called-from-booking-component': calledFrom() === 'booking.component'
+            }">
         <div class="personalia">
-            <div class="first-name">{{staffMember?.personalia?.firstName}}</div>
+            <div class="first-name"
+                [ngClass]="{
+                'called-from-app-component': calledFrom() === 'app-component',
+                'called-from-booking-component': calledFrom() === 'booking.component'
+            }">{{staffMember?.personalia?.firstName}}</div>
             @if(staffMember.personalia.particles){
-            <div class="particles">{{staffMember?.personalia?.particles}}</div>
+            <div class="particles"
+                [ngClass]="{
+                'called-from-app-component': calledFrom() === 'app-component',
+                'called-from-booking-component': calledFrom() === 'booking.component'
+            }">{{staffMember?.personalia?.particles}}</div>
             }
-            <div class="last-name">{{staffMember?.personalia?.lastName}}</div>
+            <div class="last-name"
+                [ngClass]="{
+                'called-from-app-component': calledFrom() === 'app-component',
+                'called-from-booking-component': calledFrom() === 'booking.component'
+            }">{{staffMember?.personalia?.lastName}}</div>
         </div>
         <div class="instruments">
             @for(instrument of staffMember?.instruments; track $index) {
-            <div class="instrument">{{instrument}}</div>
+            <div class="instrument"
+                [ngClass]="{
+                'called-from-app-component': calledFrom() === 'app-component',
+                'called-from-booking-component': calledFrom() === 'booking.component'
+            }">{{instrument}}</div>
             }
         </div>
     </div>

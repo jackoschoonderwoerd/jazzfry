@@ -69,8 +69,11 @@ export const VenuesStore = signalStore(
                 })
             },
             getVenues: () => {
-                fs.collection(PATH_TO_VENUES).subscribe((venues: Venue[]) => {
-                    patchState(store, { venues })
+                (() => {
+                    patchState(store, { loadingVenues: true })
+                })
+                fs.sortedCollection(PATH_TO_VENUES, 'name', 'asc').subscribe((venues: Venue[]) => {
+                    patchState(store, { venues, loadingVenues: false })
                 })
             },
             selectVenue: (venue: Venue) => {
@@ -81,12 +84,26 @@ export const VenuesStore = signalStore(
                 return store.venues().find(v => v.id === id)
             },
             getVenueNameById(id: string): string {
+
                 const venue: Venue = store.venues().find(v => v.id === id);
-                return venue.name
+                if (!venue.name) {
+                    return 'not found'
+
+                } else {
+
+                    return venue.name
+                }
+
+
             },
             getVenueCityById(id: string) {
+
                 const venue = store.venues().find(v => v.id === id);
-                return venue.city;
+                if (!venue.city) {
+                    return 'not found'
+                } else {
+                    return venue.city;
+                }
             },
             getVenueStreetById(id: string) {
                 const venue = store.venues().find(v => v.id === id);

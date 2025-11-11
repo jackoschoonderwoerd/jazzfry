@@ -9,9 +9,8 @@
             margin: 0 !important;
 
             mat-expansion-panel-header {
-                border: 3px solid var(--rust);
-                // background-color: var(--blue) !important;
-                // background-color: orange !important;
+                // border: 3px solid var(--rust);
+
                 mat-panel-title {
                     font-size: 0.9rem;
                     .editor {
@@ -86,13 +85,17 @@
 }
 
 .accordion-wrapper-inactive {
-    // border: 10px solid var(--sahara);
+    // border: 3px solid var(--sahara);
+    border: 0px solid transparent;
     border-radius: 20px;
 }
-
-// .no-padding .mat-expansion-panel-header {
-//     padding: 0;
-// }
+.accordion-wrapper {
+    // border: 10px solid var(--rust); /* define base border so it can animate */
+    border-radius: 20px;
+    transition:
+        border-color 0.3s ease-in-out,
+        border-width 0.3s ease-in-out;
+}
 
 .no-padding .mat-expansion-panel-body {
     padding: 0 !important;
@@ -144,9 +147,29 @@
 .panel-closed {
     font-size: 1rem;
 }
+
 :host ::ng-deep .mat-expansion-panel-header {
     min-height: 64px;
     // padding-top: 1rem;
     // padding-bottom: 1rem;
     padding: 1rem !important;
+}
+.venue-name {
+    // transition: font-size 0.3s ease-in-out;
+    transition: font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header-panel-open {
+    // border: none;
+    border: 3px solid transparent;
+}
+
+.header-panel-closed {
+    // border-color: var(--rust);
+    border: 3px solid var(--rust);
+}
+.expansion-panel-header {
+    // border-width: 3px;
+    // border-color: solid var(--rust);
+    // border: 3px solid var(--rust);
+    transition: border 0.3s ease-in-out;
 }

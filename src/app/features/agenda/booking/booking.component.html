@@ -9,12 +9,14 @@
         <mat-expansion-panel hideToggle
             (opened)="onPanelOpened()"
             (closed)="onPanelClosed()"
-            [ngClass]="getIsMonthOdd() ? 'expansion-panel-is-odd' : 'expansion-panel-is-even'"
+            [ngClass]="monthIsOdd() ? 'expansion-panel-is-odd' : 'expansion-panel-is-even'"
             [expanded]="index === bookingsStore.indexSelectedBooking()"
             class="no-body-padding"
             (click)="setIndex(index)">
-            <mat-expansion-panel-header [ngClass]="getIsMonthOdd() ? 'expansion-panel-header-is-odd' : 'expansion-panel-header-is-even'"
-                [ngStyle]="{'border': panelOpen() ? '3px solid transparent' : '3px solid var(--rust)'}">
+            <mat-expansion-panel-header class="expansion-panel-header"
+                [ngClass]="monthIsOdd() ? 'expansion-panel-header-is-odd' : 'expansion-panel-header-is-even'"
+                [class.header-panel-open]="panelOpen()"
+                [class.header-panel-closed]="!panelOpen()">
                 <mat-panel-title>
 
                     @if(authStore.isLoggedIn()){
@@ -34,18 +36,21 @@
                     <div class="user">
 
                         <div class="start"
-                            [ngClass]="getIsMonthOdd() ? 'user-is-odd' : 'user-is-even'">
+                            [ngClass]="monthIsOdd() ? 'user-is-odd' : 'user-is-even'">
                             <app-date [seconds]="booking.date.seconds"></app-date>
                         </div>
+                        @if(booking?.venue){
+
                         <div class="venue-name"
                             [ngClass]="{
-                                'venue-name-is-odd': getIsMonthOdd(),
-                                'venue-name-is-even': !getIsMonthOdd(),
-                                'panel-open': panelOpen(),
-                                'panel-closed': !panelOpen()
-                                }">
+                                    'venue-name-is-odd': monthIsOdd(),
+                                    'venue-name-is-even': !monthIsOdd(),
+                                    'panel-open': panelOpen(),
+                                    'panel-closed': !panelOpen()
+                                    }">
                             {{ venuesStore.getVenueNameById(booking?.venue) }}
                         </div>
+                        }
 
                     </div>
                 </mat-panel-title>
@@ -96,7 +101,8 @@
                 <div class="staff-members">
                     @for(id of booking?.staffMemberIds; track $index) {
 
-                    <app-user-staff-member [staffMember]="staffStore.getStaffMemberById(id)"></app-user-staff-member>
+                    <app-user-staff-member [calledFrom]="'booking.component'"
+                        [staffMember]="staffStore.getStaffMemberById(id)"></app-user-staff-member>
 
                     }
                 </div>

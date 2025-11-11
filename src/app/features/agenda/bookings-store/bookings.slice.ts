@@ -19,6 +19,8 @@ export interface BookingsSlice {
     onlyAmsterdamFutureFilterActive: boolean;
     showAllActive: boolean;
 
+    loadingBookings: boolean;
+
 
 }
 
@@ -34,5 +36,7 @@ export const initialBookingsSlice: BookingsSlice = {
 
     dateFilterActive: false,
     onlyAmsterdamFutureFilterActive: false,
-    showAllActive: true
+    showAllActive: true,
+
+    loadingBookings: false
 }

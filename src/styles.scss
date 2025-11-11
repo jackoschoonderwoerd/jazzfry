@@ -7,7 +7,7 @@
 html,
 body {
     height: 100%;
-    background-color: var(--blue);
+    // background-color: var(--blue);
 }
 body {
     margin: 0;
@@ -38,4 +38,10 @@ body {
 }
 .mat-expansion-indicator::after {
     color: red;
+}
+.form-button {
+    background-color: var(--blue) !important;
+    color: var(--sahara) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1rem !important;
 }

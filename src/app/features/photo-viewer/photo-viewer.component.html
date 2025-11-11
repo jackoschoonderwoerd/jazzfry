@@ -1,0 +1,33 @@
+<div class="wrapper">
+
+    <button class="back-button"
+        mat-icon-button
+        (click)="back()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <button class="forward-button"
+        mat-icon-button
+        (click)="forward()">
+        <mat-icon>arrow_forward</mat-icon>
+    </button>
+
+    <div class="images-container"
+        (touchstart)="onTouchStart($event)"
+        (touchend)="onTouchEnd($event)">
+        @for (jfImage of galleryStore.jfImages(); track $index) {
+        @if (
+        $index === activeIndex() ||
+        $index === (activeIndex() + 1) % imageCount() ||
+        $index === (activeIndex() - 1 + imageCount()) % imageCount()
+        ) {
+        <div class="image-container"
+            [ngClass]="activeIndex() !== $index ? 'fade-out' : 'border'">
+            <img [src]="jfImage.downloadUrl"
+                loading="lazy"
+                alt="">
+        </div>
+        }
+        }
+    </div>
+</div>

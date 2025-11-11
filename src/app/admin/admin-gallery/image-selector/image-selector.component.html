@@ -1,0 +1,47 @@
+<div class="wrapper">
+    <!-- <div class="edimode"><span>editmode: </span>{{editmode()}}</div> -->
+
+    <!-- <div class=""><span>galleryStore.imageUpForEdit(): </span>{{galleryStore.imageUpForEdit()}}</div>
+    <div class=""><span>imagePreview:</span>{{imagePreview}}</div> -->
+    <input style="display: none;"
+        #fileInput
+        (change)="onFileInputChange($event)"
+        type="file"
+        accept="image/*">
+    @if(!imagePreview && imageUpForEdit$() === null){
+    <!-- <p>clean up filename, no spaces</p> -->
+    <button class="select-file-button"
+        mat-button
+        (click)="fileInput.click()">select file</button>
+    }
+    <!-- @if(imagePreview || galleryStore.imageUpForEdit()) { -->
+    @if(imagePreview || imageUpForEdit$()) {
+    <div class="img-preview-container">
+        <img [src]="galleryStore.imageUpForEdit() ? galleryStore.imageUpForEdit()!.downloadUrl : imagePreview"
+            alt="">
+        <mat-form-field>
+            <textarea matInput
+                placeholder="caption"
+                #caption
+                [value]="galleryStore.imageUpForEdit() && galleryStore.imageUpForEdit().caption ? galleryStore.imageUpForEdit().caption : ''"></textarea>
+        </mat-form-field>
+        <div class="buttons">
+
+            <button mat-button
+                class="store-btn"
+                (click)="onStoreImage()">{{editmode() ? 'update caption': 'store image'}}</button>
+            <button mat-raised-button
+                (click)="onCancel()">
+                cancel
+            </button>
+            <!-- <button mat-raised-button
+                (click)="onCancel()">
+                cancel!!!
+            </button> -->
+        </div>
+    </div>
+    }
+    <!-- @else {
+    <p>no image selected</p>
+    } -->
+</div>

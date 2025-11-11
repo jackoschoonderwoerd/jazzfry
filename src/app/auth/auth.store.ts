@@ -20,17 +20,21 @@ import { Router } from '@angular/router';
 import { JFUser } from '../models/jf-user';
 import { FirestoreService } from '../shared/firestore.service';
 import { PATH_TO_VISITS } from '../models/constants';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { WrongEmailPasswordComponent } from './login/wrong-email-password/wrong-email-password.component';
+import { VisitFormFirebase } from '../models/visit.model';
+import { SnackbarService } from '../shared/snackbar.service';
 
 
 
 type AuthState = {
     isLoggedIn: boolean;
-    visits: Date[];
+    visitsFromFirebase: VisitFormFirebase[];
 
 }
 const initialState: AuthState = {
     isLoggedIn: false,
-    visits: []
+    visitsFromFirebase: []
 
 }
 
@@ -39,10 +43,16 @@ export const AuthStore = signalStore(
     withState(initialState),
     withMethods(
 
-        (store, fs = inject(FirestoreService), auth = inject(Auth), router = inject(Router)) => ({
+        (store,
+            fs = inject(FirestoreService),
+            auth = inject(Auth),
+            router = inject(Router),
+            dialog = inject(MatDialog),
+            snackbarService = inject(SnackbarService)
+        ) => ({
             async login(jfUser: JFUser) {
                 if (jfUser) {
-                    signInWithEmailAndPassword(auth, jfUser.email, jfUser.password)
+                    return signInWithEmailAndPassword(auth, jfUser.email, jfUser.password)
                         .then((userCredential: UserCredential) => {
                             patchState(store, { isLoggedIn: true });
                             router.navigateByUrl('admin');
@@ -50,19 +60,24 @@ export const AuthStore = signalStore(
                         })
                         .catch((err: AuthError) => {
                             console.log(err.message)
+                            dialog.open(WrongEmailPasswordComponent, {
+                                data: {
+                                    message: err
+                                }
+                            })
                             patchState(store, { isLoggedIn: false })
                         })
                 }
 
             },
             async logout() {
-                console.log('loggin out')
+                // console.log('loggin out')
                 auth.signOut().then((res: any) => {
-                    console.log('you are succesfully logged out')
+                    snackbarService.openSnackbar('you are succesfully logged out')
                     patchState(store, { isLoggedIn: false })
                 })
                     .catch((err: FirebaseError) => {
-                        console.error('failed to log out')
+                        snackbarService.openSnackbar('failed to log out')
                     })
                 patchState(store, { isLoggedIn: false })
             },
@@ -83,7 +98,7 @@ export const AuthStore = signalStore(
             },
             getVisits() {
                 fs.sortedCollection(PATH_TO_VISITS, 'visit', 'asc').subscribe((visits: any) => {
-                    patchState(store, { visits })
+                    patchState(store, { visitsFromFirebase: visits })
                 })
             }
         })

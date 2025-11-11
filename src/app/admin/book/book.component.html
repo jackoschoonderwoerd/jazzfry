@@ -8,7 +8,7 @@
         <app-visible-to-user-picker></app-visible-to-user-picker>
     </div>
     <div class="book-store">
-        <div class="header">book store</div>
+        <div class="header">Check info</div>
         <div class="date">{{bookStore.date()|date:'long'}}</div>
         @if(bookStore.venue()) {
         <div class="venue">{{venueStore.getVenueNameById(bookStore.venue()) }}</div>
@@ -18,11 +18,23 @@
         <div class="staff-members">
             <div class="staffmembers">staffmembers:</div>
             @for(id of bookStore.staffMemberIds();track $index) {
-
-            <app-staff-member [id]="id"></app-staff-member>
+            <div class="staff-member">
+                <app-staff-member [id]="id"></app-staff-member>
+                <div class="arrows">
+                    <!-- <div class=""><span>bookStore.staffMemberIds().length: </span>{{bookStore.staffMemberIds().length}}</div>
+                    <div class=""><span>$index</span>{{$index}}</div> -->
+                    @if($index !== 0){
+                    <mat-icon (click)="moveStaffMemberUp(id)">arrow_drop_up</mat-icon>
+                    }
+                    @if($index < bookStore.staffMemberIds().length-1){
+                        <mat-icon (click)="moveStaffMemberDown(id)">arrow_drop_down</mat-icon>
+                    }
+                </div>
+            </div>
             }
 
         </div>
+        <div class="hidden"><span>hidden: &nbsp;</span>{{bookStore.hidden()}}</div>
         <div class="private-party"><span>private party: &nbsp;</span>{{bookStore.privateParty()}}</div>
         <!-- <div class="visible-to-user"><span>visible to user: &nbsp;{{bookStore.hidden()}}</span></div> -->
         <div class="editmode">editmode: {{bookStore.editmode()}}</div>

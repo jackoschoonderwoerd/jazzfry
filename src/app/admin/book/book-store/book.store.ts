@@ -65,6 +65,9 @@ export const BookStore = signalStore(
                 console.log(checked)
                 patchState(store, { privateParty: checked, formTouched: true })
             },
+            setStaffmemberIdsArray(newArray: string[]) {
+                patchState(store, { staffMemberIds: newArray, formTouched: true })
+            },
             hide(checked: boolean) {
                 console.log('hidden', checked);
                 patchState(store, { hidden: checked, formTouched: true });

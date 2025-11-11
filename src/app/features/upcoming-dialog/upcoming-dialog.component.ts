@@ -1,6 +1,6 @@
-import { Component, inject, input, Optional } from '@angular/core';
+import { Component, inject, input, Optional, Signal, signal } from '@angular/core';
 import { BookingsStore } from '../agenda/bookings-store/bookings.store';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { VenuesStore } from '../../admin/venues/venue-store/venue.store';
@@ -11,7 +11,10 @@ import { DateComponent } from '../../shared/date/date.component';
 import { FlagsComponent } from '../../shared/flags/flags.component';
 import { HourComponent } from '../../shared/hour/hour.component';
 import { UiStore } from '../../shared/ui-store/ui.store';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthStore } from '../../auth/auth.store';
+
 
 @Component({
     selector: 'app-upcoming-dialog',
@@ -25,7 +28,9 @@ import { JsonPipe } from '@angular/common';
         FlagsComponent,
         HourComponent,
         // JsonPipe,
-        UserVenueComponent
+        UserVenueComponent,
+        MatProgressSpinnerModule,
+        NgClass
     ],
     templateUrl: './upcoming-dialog.component.html',
     styleUrl: './upcoming-dialog.component.scss'
@@ -36,11 +41,13 @@ export class UpcomingDialogComponent {
     staffStore = inject(StaffStore)
     bookingsStore = inject(BookingsStore)
     venuesStore = inject(VenuesStore)
-    uiStore = inject(UiStore)
+    uiStore = inject(UiStore);
+    authStore = inject(AuthStore)
 
-    constructor(
-        public dialogRef: MatDialogRef<UpcomingDialogComponent>) {
+    data = inject(MAT_DIALOG_DATA, { optional: true });
 
+    constructor(public dialogRef: MatDialogRef<UpcomingDialogComponent>) {
+        // console.log(this.data)
     }
 
     onClose() {

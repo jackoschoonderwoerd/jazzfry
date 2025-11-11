@@ -10,4 +10,6 @@ import { DatePipe, JsonPipe } from '@angular/common';
 })
 export class VisitsComponent {
     authStore = inject(AuthStore)
+
+
 }

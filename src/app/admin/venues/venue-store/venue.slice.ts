@@ -5,6 +5,7 @@ export interface VenueSlice {
     venues: Venue[];
     selectedVenue: Venue;
     upcomingVenue: Venue;
+    loadingVenues: boolean;
 
     // readonly staffMember: StaffMember;
     // readonly editmode: boolean;
@@ -13,7 +14,8 @@ export interface VenueSlice {
 export const initialVenueSlice: VenueSlice = {
     venues: [],
     selectedVenue: null,
-    upcomingVenue: null
+    upcomingVenue: null,
+    loadingVenues: true
 
 
     // staffMember: {

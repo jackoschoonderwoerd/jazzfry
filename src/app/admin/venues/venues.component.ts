@@ -6,7 +6,8 @@ import { AddVenueDialogComponent } from './add-venue-dialog/add-venue-dialog.com
 import { JsonPipe } from '@angular/common';
 import { VenueComponent } from './venue/venue.component';
 import { VenuesStore } from './venue-store/venue.store';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
     selector: 'app-venues',
@@ -17,12 +18,15 @@ import { RouterModule } from '@angular/router';
 export class VenuesComponent {
     dialog = inject(MatDialog);
     venueStore = inject(VenuesStore);
+    router = inject(Router)
 
     constructor() {
         this.venueStore.getVenues()
     }
 
     onAddVenue() {
+        this.router.navigateByUrl('/add-venue')
+        return
         this.dialog.open(AddVenueDialogComponent, {
             width: '100vw',
             height: '100vh',

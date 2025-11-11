@@ -28,6 +28,12 @@ export const UiStore = signalStore(
             },
             setActiveLanguage(language: string) {
                 patchState(store, { activeLanguage: language })
+            },
+            setShowNavigation(status: boolean) {
+                patchState(store, { showNavigation: status })
+            },
+            setSidenav(status: boolean) {
+                patchState(store, { sidenavStatus: status })
             }
         };
     }),

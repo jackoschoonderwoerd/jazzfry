@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, Input, OnInit, signal } from '@angular/core';
 import { Booking } from '../../../models/booking.model';
 import { NgClass, NgStyle } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -33,14 +33,13 @@ import { HourComponent } from '../../../shared/hour/hour.component';
         UserVenueComponent,
         UserStaffMemberComponent,
         NgClass,
-        NgStyle,
         HourComponent
 
     ],
     templateUrl: './booking.component.html',
     styleUrl: './booking.component.scss'
 })
-export class BookingComponent {
+export class BookingComponent implements OnInit, AfterViewInit {
     @Input() booking: Booking;
     @Input() index: number
 
@@ -55,8 +54,20 @@ export class BookingComponent {
     venuesStore = inject(VenuesStore);
     uiStore = inject(UiStore);
 
-    panelOpen = signal(false)
+    panelOpen = signal(false);
+    monthIsOdd = signal<boolean>(true)
 
+
+    ngOnInit(): void {
+    }
+    ngAfterViewInit(): void {
+
+        if (new Date(this.booking.date.seconds * 1000).getMonth() % 2 !== 0) {
+            this.monthIsOdd.set(true);
+        } else {
+            this.monthIsOdd.set(false)
+        }
+    }
 
 
     onEdit(e: Event) {
@@ -70,9 +81,9 @@ export class BookingComponent {
         this.bookingsStore.setIndexSelectedBooking(index)
     }
 
-    getIsMonthOdd() {
-        return new Date(this.booking.date.seconds * 1000).getMonth() % 2 !== 0;
-    }
+    // getIsMonthOdd() {
+    //     return new Date(this.booking.date.seconds * 1000).getMonth() % 2 !== 0;
+    // }
 
     getExpansionPanelHeaderStyle() {
         return { 'color': 'red!important' }

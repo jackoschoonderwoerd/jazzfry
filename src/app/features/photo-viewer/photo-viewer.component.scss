@@ -1,0 +1,103 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+.back-button {
+    bottom: 10px;
+    left: 10px;
+}
+.forward-button {
+    bottom: 10px;
+    right: 10px;
+}
+
+.forward-button,
+.back-button {
+    position: absolute;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+    background-color: white !important;
+}
+
+.images-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container {
+    position: absolute;
+    inset: 0; /* full size inside parent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease;
+    opacity: 0; /* default hidden */
+    z-index: 0;
+
+    &.border {
+        opacity: 1; /* show active image */
+        z-index: 1;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        // border-radius: 12px;
+        // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+}
+.forward-button,
+.back-button {
+    @media (max-width: 600px) {
+        display: none;
+    }
+}
+
+// .wrapper {
+//     // .active-index {
+//     //     background-color: white;
+//     // }
+//     .buttons {
+//         button {
+//             background-color: white;
+//         }
+//     }
+//     .images-container {
+//         // border: 3px solid green;
+//         display: flex;
+//         gap: 1rem;
+//         .image-container {
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: space-between;
+//             border: 3px solid lightblue;
+//             transition: opacity ease 2s;
+//             position: absolute;
+//             img {
+//                 width: 25rem;
+//             }
+//         }
+//         .fade-out {
+//             opacity: 0;
+//         }
+//     }
+//     // .index {
+//     //     background-color: white;
+//     // }
+// }

@@ -1,5 +1,6 @@
 @let booking = bookingsStore?.future_hideHidden()[0];
 @let venue = venuesStore?.getVenueById(booking?.venue);
+<!-- <mat-spinner class="custom-spinner"></mat-spinner> -->
 
 
 <div class="wrapper">
@@ -9,7 +10,18 @@
         <div class="app-flags-wrapper">
             <app-flags></app-flags>
         </div>
-        <div class="booking">
+        @if(authStore.isLoggedIn()){
+        <div class=""><span>venuesStore.loadingVenues()</span>{{venuesStore.loadingVenues()}}</div>
+        <div class=""><span>bookingsStore.loadingBookings()</span>{{bookingsStore.loadingBookings()}}</div>
+        <div class=""><span>authStore.isLoggedIn()</span>{{authStore.isLoggedIn()}}</div>
+        }
+
+        @if(!venuesStore.loadingVenues() && !bookingsStore.loadingBookings()){
+
+        <div class="booking-container"
+            [ngClass]="!venuesStore.loadingVenues() && !bookingsStore.loadingBookings()
+                ? 'booking-active'
+                : 'booking-passive'">
             <div class="app-date-wrapper">
                 <app-date [seconds]="booking?.date.seconds"></app-date>
             </div>
@@ -36,19 +48,21 @@
                 <app-hour [hour]="booking?.end"></app-hour>
 
             </div>
-
-
-
-
             <div class="staff-members">
                 @for(id of booking?.staffMemberIds;track $index) {
                 <div class="staff-member">
-                    <app-user-staff-member [staffMember]="staffStore?.getStaffMemberById(id)"></app-user-staff-member>
+                    <app-user-staff-member [calledFrom]="data.calledFrom"
+                        [staffMember]="staffStore?.getStaffMemberById(id)"></app-user-staff-member>
 
                 </div>
                 }
             </div>
         </div>
+        } @else {
+        <div class="spinner-container">
+            <mat-spinner class="custom-spinner"></mat-spinner>
+        </div>
+        }
     </div>
     <div class="actions">
         <div class="buttons">

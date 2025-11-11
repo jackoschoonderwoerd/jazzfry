@@ -1,13 +1,26 @@
 .staff-member {
-    border-top: 1px solid gray;
+    // border-top: 1px solid gray;
+    padding: 0 0.5rem;
     // padding: 0.3rem;
     width: 100%;
-    display: flex;
+    // display: flex;
+
     .staff-member-info {
-        flex-grow: 1;
+        // flex-grow: 1;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
         .personalia {
+            letter-spacing: 1.5px;
             display: flex;
             gap: 0.5rem;
+            color: inherit;
+            .called-from-app-component {
+                color: var(--sahara);
+            }
+            .called-from-booking-component {
+                color: var(--blue);
+            }
             .first-name,
             .last-name {
                 text-transform: capitalize;
@@ -15,6 +28,12 @@
         }
         .instruments {
             text-indent: 1rem;
+            .called-from-app-component {
+                color: var(--sahara);
+            }
+            .called-from-booking-component {
+                color: var(--blue);
+            }
             .instrument {
                 font-style: italic;
             }

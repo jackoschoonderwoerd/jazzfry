@@ -36,9 +36,12 @@ export const BookingsStore = signalStore(
 
         return {
             getAllBookings: () => {
+                (() => {
+                    patchState(store, { loadingBookings: true })
+                })
                 fs.sortedCollection(PATH_TO_BOOKINGS, 'date', 'asc')
                     .subscribe((bookings: Booking[]) => {
-                        patchState(store, { all: bookings, showingAll: true, filtered: bookings });
+                        patchState(store, { all: bookings, showingAll: true, filtered: bookings, loadingBookings: false });
                     });
             },
             setIndexSelectedBooking(indexSelectedBooking: number) {

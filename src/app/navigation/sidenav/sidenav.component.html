@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="lists">
+        <ul>
+
+            @for(menuItem of uiStore.menuItems(); track $index){
+            <li (click)="uiStore.setSidenav(false)"
+                [routerLink]="menuItem.link">
+                {{ uiStore.activeLanguage() === 'nl' ?  menuItem.appearanceNl : menuItem.appearanceEn}}
+            </li>
+            }
+        </ul>
+        @if(authStore.isLoggedIn()) {
+        <ul class="admin-menu-items">
+            @for(menuItem of uiStore.adminMenuItems() ; track $index) {
+            <li (click)="uiStore.setSidenav(false)"
+                [routerLink]="menuItem.link">
+                {{ uiStore.activeLanguage() === 'nl' ?  menuItem.appearanceNl : menuItem.appearanceEn}}
+            </li>
+            }
+            <li (click)="cameraInput.click()">
+
+
+
+                <mat-icon class="photo-camera-icon">photo_camera</mat-icon>
+
+            </li>
+            <li class="version">V1</li>
+
+        </ul>
+        <input #cameraInput
+            type="file"
+            accept="image/*"
+            capture="environment"
+            hidden
+            (change)="onCameraFileSelected($event)" />
+        }
+    </div>
+    <div class="button-container">
+        <button mat-icon-button
+            (click)="uiStore.setSidenav(false)">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>

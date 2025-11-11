@@ -1,8 +1,12 @@
 .wrapper {
     background-color: var(--sahara);
+    .add {
+        background-color: var(--blue);
+        color: var(--sahara);
+    }
     .staff-members {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+        grid-template-columns: repeat(auto-fill, minmax(300px, auto));
         gap: 1rem;
     }
 }

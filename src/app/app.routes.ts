@@ -19,6 +19,12 @@ export const routes: Routes = [
         loadComponent: () => import('./features/contact/contact.component')
             .then(c => c.ContactComponent)
     },
+
+    {
+        path: 'photo-viewer',
+        loadComponent: () => import('./features/photo-viewer/photo-viewer.component')
+            .then(c => c.PhotoViewerComponent)
+    },
     {
         path: 'admin',
         loadComponent: () => import('./admin/admin.component')

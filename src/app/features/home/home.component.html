@@ -1,47 +1,52 @@
 <div class="wrapper">
-    @if(uiStore.activeLanguage()==='en'){
+    <div class="content">
 
-    <div class="english">
+        @if(uiStore.activeLanguage()==='en'){
 
-        <p>
 
-            JAZZFRY grew out of the city’s jazz scene, a circle of friends who share the same language of swing, improvisation, and groove. Each one is an experienced instrumentalist — piano, guitar, bass, saxophone, drums — and together they form a small collective rather than a fixed band.
-        </p>
-        <p>
+        <div class="english">
 
-            Depending on the occasion, two or three musicians might set up in the corner of a hotel lounge, weaving a relaxed atmosphere for guests. Other nights, the full quartet or quintet takes the stage in a bar, lifting the energy with hard bop lines or cool jazz textures. For social gatherings — receptions, dinners, or private parties — the combination is chosen to fit the mood: sometimes a mellow trio, sometimes something a little brighter.
-        </p>
-        <p>
+            <p>
 
-            There is no singer; the instruments do the storytelling. The melodies and harmonies shift between players, leaving space for improvisation and interplay. Every concert is different, because the ensemble is built on listening to one another and shaping the music in the moment.
-        </p>
-        <p>
+                JAZZFRY grew out of the city’s jazz scene, a circle of friends who share the same language of swing, improvisation, and groove. Each one is an experienced instrumentalist — piano, guitar, bass, saxophone, drums — and together they form a small collective rather than a fixed band.
+            </p>
+            <p>
 
-            What unites them is a simple aim: to bring the spirit of live jazz into everyday places, whether it’s an intimate evening in a hotel, a lively night in a bar, or a special celebration.
-        </p>
+                Depending on the occasion, two or three musicians might set up in the corner of a hotel lounge, weaving a relaxed atmosphere for guests. Other nights, the full quartet or quintet takes the stage in a bar, lifting the energy with hard bop lines or cool jazz textures. For social gatherings — receptions, dinners, or private parties — the combination is chosen to fit the mood: sometimes a mellow trio, sometimes something a little brighter.
+            </p>
+            <p>
+
+                There is no singer; the instruments do the storytelling. The melodies and harmonies shift between players, leaving space for improvisation and interplay. Every concert is different, because the ensemble is built on listening to one another and shaping the music in the moment.
+            </p>
+            <p>
+
+                What unites them is a simple aim: to bring the spirit of live jazz into everyday places, whether it’s an intimate evening in a hotel, a lively night in a bar, or a special celebration.
+            </p>
+        </div>
+        }
+        @if(uiStore.activeLanguage()==='nl'){
+
+
+        <div class="dutch">
+            <p>
+
+                JAZZFRY is ontstaan ​​uit de jazzscene van de stad, een vriendenkring die dezelfde taal van swing, improvisatie en groove deelt. Elk van hen is een ervaren instrumentalist – piano, gitaar, bas, saxofoon, drums – en samen vormen ze een klein collectief in plaats van een vaste band.
+            </p>
+            <p>
+
+                Afhankelijk van de gelegenheid stellen twee of drie muzikanten zich op in een hoek van een hotellounge, waar ze een ontspannen sfeer creëren voor de gasten. Op andere avonden betreedt het volledige kwartet of kwintet het podium in een bar en verheft de energie met hardbop-lijnen of coole jazztexturen. Voor sociale bijeenkomsten – recepties, diners of privéfeesten – wordt de combinatie gekozen die past bij de sfeer: soms een rustig trio, soms iets vrolijkers.
+            </p>
+            <p>
+
+                Er is geen zanger; de instrumenten vertellen het verhaal. De melodieën en harmonieën wisselen tussen de spelers, waardoor er ruimte is voor improvisatie en samenspel. Elk concert is anders, omdat het ensemble is opgebouwd door naar elkaar te luisteren en de muziek in het moment vorm te geven.
+            </p>
+            <p>
+
+                Wat hen verenigt is een eenvoudig doel: de geest van live jazz naar alledaagse plekken brengen, of het nu gaat om een ​​intiem avondje in een hotel, een bruisende nacht in een bar of een speciale viering.
+            </p>
+        </div>
+        }
     </div>
-    }
-    @if(uiStore.activeLanguage()==='nl'){
-
-    <div class="dutch">
-        <p>
-
-            JAZZFRY is ontstaan ​​uit de jazzscene van de stad, een vriendenkring die dezelfde taal van swing, improvisatie en groove deelt. Elk van hen is een ervaren instrumentalist – piano, gitaar, bas, saxofoon, drums – en samen vormen ze een klein collectief in plaats van een vaste band.
-        </p>
-        <p>
-
-            Afhankelijk van de gelegenheid stellen twee of drie muzikanten zich op in een hoek van een hotellounge, waar ze een ontspannen sfeer creëren voor de gasten. Op andere avonden betreedt het volledige kwartet of kwintet het podium in een bar en verheft de energie met hardbop-lijnen of coole jazztexturen. Voor sociale bijeenkomsten – recepties, diners of privéfeesten – wordt de combinatie gekozen die past bij de sfeer: soms een rustig trio, soms iets vrolijkers.
-        </p>
-        <p>
-
-            Er is geen zanger; de instrumenten vertellen het verhaal. De melodieën en harmonieën wisselen tussen de spelers, waardoor er ruimte is voor improvisatie en samenspel. Elk concert is anders, omdat het ensemble is opgebouwd door naar elkaar te luisteren en de muziek in het moment vorm te geven.
-        </p>
-        <p>
-
-            Wat hen verenigt is een eenvoudig doel: de geest van live jazz naar alledaagse plekken brengen, of het nu gaat om een ​​intiem avondje in een hotel, een bruisende nacht in een bar of een speciale viering.
-        </p>
-    </div>
-    }
     <button mat-button
         (click)="router.navigateByUrl('agenda')">agenda</button>
 </div>

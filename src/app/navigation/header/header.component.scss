@@ -4,19 +4,53 @@ mat-toolbar {
     justify-content: space-between;
     .header-left {
         display: flex;
-        // justify-items: center;
+        gap: 0.5rem;
+        // border: 2px solid pink;
         justify-content: space-between;
-        .buttons {
-            // border: 1px solid white;
+        align-items: center;
+
+        mat-icon {
+            // font-size: 3rem;
+            color: var(--sahara);
+            @media (min-width: 1099px) {
+                display: none;
+            }
+        }
+
+        .user-approved-menu {
+            // border: 2px solid pink;
             display: flex;
+            align-items: center;
             gap: 0.5rem;
             text-transform: uppercase;
+            @media (max-width: 1100px) {
+                display: none;
+            }
             button {
                 background-color: var(--sahara);
             }
             .link-active {
                 background-color: var(--blue);
                 color: var(--sahara);
+            }
+        }
+        .admin-approved-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            // border: 2px solid white;
+            @media (max-width: 1100px) {
+                display: none;
+            }
+            button {
+                background-color: var(--blue);
+                border: 2px solid var(--sahara) !important;
+                color: var(--sahara);
+            }
+            .admin-link-active {
+                background-color: var(--rust) !important;
+                color: var(--sahara) !important;
             }
         }
     }

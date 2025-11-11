@@ -1,11 +1,12 @@
 <div class="wrapper">
     <div class="staff-members">
+        <button class="add"
+            mat-button
+            routerLink="/admin/add-staff">
+            add musician
+        </button>
         @for(staffMember of staffStore.staffMembers(); track $index){
         <app-staff-member [staffMember]="staffMember"></app-staff-member>
         }
-        <button mat-icon-button
-            routerLink="/admin/add-staff">
-            <mat-icon>add</mat-icon>
-        </button>
     </div>
 </div>

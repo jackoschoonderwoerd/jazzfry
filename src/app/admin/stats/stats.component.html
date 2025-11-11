@@ -1,7 +1,8 @@
 <div class="wrapper">
+    <!-- <pre>
 
-
-
+        {{dataSource|json}}
+    </pre> -->
     <div class="left">
 
         <button mat-button
@@ -93,7 +94,10 @@
                     *matHeaderCellDef>venueName </th>
                 <td mat-cell
                     *matCellDef="let dataSource">
+
+                    <!-- {{dataSource.venue}} -->
                     {{venuesStore.getVenueNameById(dataSource.venue)}}
+
                 </td>
             </ng-container>
 
@@ -124,7 +128,6 @@
 
                             @for(id of dataSource.staffMemberIds; track $index) {
                             <app-staff-member [id]="id"></app-staff-member>
-                            <!-- {{id}} -->
                             }
                         </mat-expansion-panel>
 

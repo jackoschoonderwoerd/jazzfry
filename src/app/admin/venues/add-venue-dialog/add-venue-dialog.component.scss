@@ -1,11 +1,15 @@
 .wrapper {
     background-color: var(--sahara);
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 500px;
+    width: 100%;
+    border: 5px solid black;
+
+    .form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+        gap: 1rem;
+
         margin: auto;
+
         .buttons {
             display: flex;
 

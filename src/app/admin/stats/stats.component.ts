@@ -1,8 +1,8 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { BookingsStore } from '../../features/agenda/bookings-store/bookings.store';
-import { DatePipe, JsonPipe } from '@angular/common';
+import { DatePipe, isPlatformBrowser, JsonPipe } from '@angular/common';
 import { VenuesStore } from '../venues/venue-store/venue.store';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StatsOptionsComponent } from './stats-options/stats-options.component';
@@ -42,21 +42,25 @@ export class StatsComponent {
     displayedColumns: string[] = [
         'edit',
         'delete',
-        // 'id',
         'date',
         'start',
         'end',
         'venueName',
-        // 'venueWebsite',
         'city',
         'staffMembers',
         'private',
         'hidden'
+
+
+        // 'id',
+        // 'venueWebsite',
     ];
 
     dataSource: any
+    private isBrowser: boolean;
 
     constructor() {
+        this.isBrowser = isPlatformBrowser(PLATFORM_ID);
         effect(() => {
             if (this.bookingsStore.showAllActive()) {
                 this.dataSource = this.bookingsStore.future_amsterdamOnly_hidePrivate_hideHidden();
@@ -70,22 +74,26 @@ export class StatsComponent {
     filename = 'jazzfry.xlsx'
 
     exportExcel() {
-        let data = document.getElementById('table-data');
 
-        console.log(data);
+        if (this.isBrowser) {
+
+            let data = document.getElementById('table-data');
+            console.log(data);
+            const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+
+            // console.log(ws)
+
+            const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+            console.log(wb)
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+            XLSX.writeFile(wb, this.fileName)
+        }
 
 
-        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
 
-        // console.log(ws)
-
-        const wb: XLSX.WorkBook = XLSX.utils.book_new();
-
-        console.log(wb)
-
-        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-        XLSX.writeFile(wb, this.fileName)
     }
 
     onEdit(booking: Booking) {

@@ -1,53 +1,67 @@
-<div class="venue-properties">
+@let v = venue();
+<!-- <div class=""
+    style="border:2px solid red">{{v?.name}}</div> -->
 
-    <div class="venue-property"><span>name: </span>{{venue()?.name}}</div>
-    <div class="venue-property"><span>street: </span>{{venue()?.street}}</div>
-    <div class="venue-property"><span>number: </span>{{venue()?.number}}</div>
-    <div class="venue-property"><span>city: </span>{{venue()?.city}}</div>
-    <div class="venue-property"><span>country: </span>{{venue()?.country}}</div>
-    <div class="venue-property"><span>phone: </span>{{venue()?.phone}}</div>
-    <div class="venue-property"><span>contact: </span>{{venue()?.contact}}</div>
-    <div class="venue-property"><span>website: </span>{{venue()?.website}}</div>
-    <div class="venue-property"><span>map url: </span>
-        <div class="url">
-            @if(venue()?.mapUrl) {
-            <div class="url">active</div>
-            } @else {
-            <div class="url">idle</div>
-            }
-        </div>
-    </div>
-    <div class="venue-property"><span>instagram: </span>
-        <div class="instagram">
-            @if(venue()?.instagram) {
-            <div class="status">active</div>
-            } @else {
-            <div class="status">idle</div>
-            }
-        </div>
-    </div>
-    <div class="venue-property"><span>facebook: </span>
-        <div class="facebook">
-            @if(venue()?.facebook) {
-            <div class="status">active</div>
-            } @else {
-            <div class="status">idle</div>
-            }
-        </div>
-    </div>
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{v.name}}
+                <!-- <span>{{v.id}}</span> -->
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="venue-properties">
 
-    <div>
-    </div>
-    <div class="buttons">
-        <button mat-icon-button
-            class="delete"
-            (click)="venueStore.deleteVenue(venue()?.id)">
-            <mat-icon>delete</mat-icon>
-        </button>
-        <button mat-icon-button
-            class="edit"
-            (click)="onEdit()">
-            <mat-icon>edit</mat-icon>
-        </button>
-    </div>
-</div>
+            <div class="venue-property"><span>name: </span>{{v?.name}}</div>
+            <div class="venue-property"><span>street: </span>{{v?.street}}</div>
+            <div class="venue-property"><span>number: </span>{{v?.number}}</div>
+            <div class="venue-property"><span>city: </span>{{v?.city}}</div>
+            <div class="venue-property"><span>country: </span>{{v?.country}}</div>
+            <div class="venue-property"><span>phone: </span>{{v?.phone}}</div>
+            <div class="venue-property"><span>contact: </span>{{v?.contact}}</div>
+            <div class="venue-property"><span>website: </span>{{v?.website}}</div>
+            <div class="venue-property"><span>map url: </span>
+                <div class="url">
+                    @if(v?.mapUrl) {
+                    <div class="url">active</div>
+                    } @else {
+                    <div class="url">idle</div>
+                    }
+                </div>
+            </div>
+            <div class="venue-property"><span>instagram: </span>
+                <div class="instagram">
+                    @if(v?.instagram) {
+                    <div class="status">active</div>
+                    } @else {
+                    <div class="status">idle</div>
+                    }
+                </div>
+            </div>
+            <div class="venue-property"><span>facebook: </span>
+                <div class="facebook">
+                    @if(v?.facebook) {
+                    <div class="status">active</div>
+                    } @else {
+                    <div class="status">idle</div>
+                    }
+                </div>
+            </div>
+
+            <div>
+            </div>
+            <div class="buttons">
+                <button mat-icon-button
+                    class="delete"
+                    (click)="venueStore.deleteVenue(v.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button
+                    class="edit"
+                    (click)="onEdit()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

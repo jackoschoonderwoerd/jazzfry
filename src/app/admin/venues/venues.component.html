@@ -1,11 +1,8 @@
-<div class="container">
-    <div class="venues">
-        @for(venue of venueStore.venues(); track $index) {
-        <app-venue [venue]="venue"></app-venue>
-        }
-    </div>
-
+<div class="venues">
     <button class="form-button"
         mat-button
         routerLink="/admin/add-venue">add venue</button>
+    @for(venue of venueStore.venues(); track $index) {
+    <app-venue [venue]="venue"></app-venue>
+    }
 </div>

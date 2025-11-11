@@ -36,6 +36,18 @@ export const adminRoutes: Routes = [
             .then(c => c.StatsComponent)
 
     },
+
+    {
+        path: 'admin-gallery',
+        loadComponent: () => import('./admin-gallery/admin-gallery.component')
+            .then(c => c.AdminGalleryComponent)
+    },
+    {
+        path: 'image-selector',
+        loadComponent: () => import('./admin-gallery/image-selector/image-selector.component')
+            .then(c => c.ImageSelectorComponent)
+    },
+
     {
         path: 'add-venue',
         loadComponent: () => import('./venues/add-venue-dialog/add-venue-dialog.component')

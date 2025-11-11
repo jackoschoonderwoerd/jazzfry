@@ -1,12 +1,26 @@
-<div class="layout">
-    <div class="header-container">
+<mat-sidenav-container>
 
-        <app-header></app-header>
-    </div>
-    <main class="outlet-wrapper">
-        <router-outlet />
-    </main>
-    <div class="footer-container">
-        <app-footer></app-footer>
-    </div>
-</div>
+    <mat-sidenav [opened]="uiStore.sidenavStatus()"
+        disableClose>
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content [style]="style">
+
+        @if(uiStore.showNavigation()){
+        <div class="header-container">
+
+            <app-header (sidenavToggle)="sidenav.open()"></app-header>
+        </div>
+        }
+        <main class="outlet-wrapper">
+            <router-outlet />
+        </main>
+        @if(uiStore.showNavigation()){
+
+        <div class="footer-container">
+            <app-footer></app-footer>
+        </div>
+        }
+        <!-- </div> -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

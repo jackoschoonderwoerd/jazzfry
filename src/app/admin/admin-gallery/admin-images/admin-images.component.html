@@ -1,0 +1,10 @@
+<div class="images">
+    @for(image of galleryStore.jfImages(); track $index){
+    <app-admin-image [image]="image"></app-admin-image>
+
+    }
+    @if(galleryStore.upLoadingImage()) {
+    <mat-spinner></mat-spinner>
+    }
+
+</div>

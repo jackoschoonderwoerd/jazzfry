@@ -1,0 +1,28 @@
+@let img = image();
+
+<div class="image-container">
+    <img class="image"
+        [src]="img.downloadUrl"
+        alt="">
+
+
+    <div class="caption">{{img.caption}}</div>
+
+    <div class="date-posted"><span>date posted:&nbsp;</span>{{img.datePosted.seconds*1000|date:"mediumDate"}}</div>
+
+    @if(authStore.isLoggedIn()) {
+
+    <div class="buttons">
+        <button class="caption-btn"
+            mat-icon-button
+            (click)="onEdit()">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button class="button"
+            mat-icon-button
+            (click)="galleryStore.deleteImage(img.id, img.downloadUrl)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+    }
+</div>
